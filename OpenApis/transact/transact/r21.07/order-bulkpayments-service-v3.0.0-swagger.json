@@ -1,0 +1,2521 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Bulk Initiation (BU) is a Temenos Payments Application that allows bank to upload small and medium sized bulk payment files, or manually capture bulk payments in its front office or back offices. The Application can be accessed by online channel applications by the APIs listed in this page to upload or create bulks,  manage and approve them before being sent for payment execution by the bank.",
+    "version" : "v3.0.0",
+    "title" : "Bulk Payment Initiation"
+  },
+  "host" : "api.temenos.com",
+  "basePath" : "/api/v3.0.0/",
+  "tags" : [ ],
+  "schemes" : [ "https" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  }, {
+    "apiKey" : [ ]
+  } ],
+  "paths" : {
+    "/order/bulkPayments/uploads/files" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Enquire on uploaded bulk file",
+        "description" : "Enquire on uploaded bulk file",
+        "operationId" : "getUploadFiles",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "systemFileName",
+          "in" : "query",
+          "description" : "Contains the system generated name for the uploaded file",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "uploadId",
+          "in" : "query",
+          "description" : "The unique identifier of the uploaded file",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userSignOnName",
+          "in" : "query",
+          "description" : "This is the name entered by the User to sign on to the System. It is used by the System as an alternative key to access User details",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lastUpdateDate",
+          "in" : "query",
+          "description" : "Specifies the date of last update to the record.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "UploadFilesResponse",
+            "schema" : {
+              "$ref" : "#/definitions/UploadFilesResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ ],
+        "summary" : "Upload bulk payment file",
+        "description" : "Upload a SME/Corporate bulk file containing bulk payments using a channel",
+        "operationId" : "uploadFile",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/File"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "FileResponse",
+            "schema" : {
+              "$ref" : "#/definitions/FileResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/order/bulkPayments/uploads/{uploadId}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Enquire a bulk based on upload reference",
+        "description" : "Enquire on uploaded bulk file based on upload reference",
+        "operationId" : "getUploadFile",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uploadId",
+          "in" : "path",
+          "description" : "The unique identifier of the uploaded file",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "UploadFileResponse",
+            "schema" : {
+              "$ref" : "#/definitions/FileResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Amend a bulk based on upload reference",
+        "description" : "Perform update operation on uploaded bulk file based on upload reference",
+        "operationId" : "updateUploadFile",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uploadId",
+          "in" : "path",
+          "description" : "The unique identifier of the uploaded file",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/File"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "UploadFileResponse",
+            "schema" : {
+              "$ref" : "#/definitions/FileResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ ],
+        "summary" : "Cancel a bulk based on upload reference",
+        "description" : "Perform cancel operation on uploaded bulk file based on upload reference",
+        "operationId" : "deleteUploadFile",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uploadId",
+          "in" : "path",
+          "description" : "The unique identifier of the uploaded file",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/UploadFileDelete"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "UploadFileResponse",
+            "schema" : {
+              "$ref" : "#/definitions/FileResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/order/order/bulkPayments" : {
+      "post" : {
+        "tags" : [ ],
+        "summary" : "Create manual bulk payment",
+        "description" : "Create bulk payment manually",
+        "operationId" : "uploadBulkMasterPayment",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/BulkMasterPayment"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "BulkMasterPaymentResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BulkMasterPaymentResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/order/bulkPayments/{bulkTransferId}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Enquire a bulk based on bulk ID",
+        "description" : "Enquire on uploaded or manually created bulk based on bulk ID",
+        "operationId" : "getBulkPayment",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bulkTransferId",
+          "in" : "path",
+          "description" : "Identifier of the Bulk Transfer",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "BulkPaymentResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BulkMasterPaymentResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Amend a bulk based on bulk ID",
+        "description" : "Perform update operation on uploaded or manually created bulk file based on bulk ID",
+        "operationId" : "updateBulkPayment",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bulkTransferId",
+          "in" : "path",
+          "description" : "Identifier of the Bulk Transfer",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/BulkMasterPayment"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "BulkPaymentResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BulkMasterPaymentResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ ],
+        "summary" : "Cancel a bulk based on bulk ID",
+        "description" : "Perform cancel operation on uploaded bulk file based on bulk ID",
+        "operationId" : "deleteBulkPayment",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bulkTransferId",
+          "in" : "path",
+          "description" : "Identifier of the Bulk Transfer",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/BulkPaymentDelete"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "BulkPaymentResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BulkMasterPaymentResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/order/bulkMasterApprovals/{bulkTransferId}" : {
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Authorise a bulk",
+        "description" : "Authorise a bulk that was previously uploaded or manually created ",
+        "operationId" : "approveBulkPayment",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bulkTransferId",
+          "in" : "path",
+          "description" : "Identifier of the Bulk Transfer",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "BulkPaymentResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BulkMasterPaymentResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/order/bulkPayments" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Enquire a bulk payment",
+        "description" : "Retrieve bulks based on bulk status or bulk ID",
+        "operationId" : "getBulkPayments",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "recordStatus",
+          "in" : "query",
+          "description" : "General status of the record. Possible values: - null - authorised - IHLD - input, on hold - INAU - input, not authorised - INA2 - input, authorised, pending second authorisation - INAO - input, not authorised with blocking overrides - RNAU - reversed, not authorised - RNAO - reversed, not authorised with blocking overrides",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "BulkPaymentsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BulkPaymentsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/order/bulkPayments/status" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Enquire on bulk status",
+        "description" : "Retrieve bulks based on bulk status ",
+        "operationId" : "getAllBulkPayments",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "bulkTransferId",
+          "in" : "query",
+          "description" : "Identifier of the Bulk Transfer",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "bulkReference",
+          "in" : "query",
+          "description" : "Contains bulk master reference for the payment.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fundsTransferId",
+          "in" : "query",
+          "description" : "Identifier of the Funds Transfer",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "Identifier of the customer",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "executionDate",
+          "in" : "query",
+          "description" : "Date on which the transaction or payment gets processed, i.e. the processing date of the transaction.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "amount",
+          "in" : "query",
+          "description" : "This is the payment amount",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "totalAmount",
+          "in" : "query",
+          "description" : "Total amount",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "currency",
+          "in" : "query",
+          "description" : "Identifies the currency. E.g. USD, GBP etc",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "debitAccount",
+          "in" : "query",
+          "description" : " Identifier of the debitAccounts.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "creditOrDebitPayment",
+          "in" : "query",
+          "description" : "Indicates whether the Bulk processing is for Credit or Debit Payments. Allowed values are DEBIT, CREDIT.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "paymentSource",
+          "in" : "query",
+          "description" : "Indicates the source from where the payment is originated",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "bulkTypeId",
+          "in" : "query",
+          "description" : "Identifier of the bulk update type record that holds default conditions required for Bulk Master creation. SINGLE and MULTI are two record references used by payment order application for processing payments induced through Bulk Master.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "singleOrmultiplePayments",
+          "in" : "query",
+          "description" : "Indicates the batch booking preference of the bulk payment. SINGLE – Single consolidated accounting entry on the debtor account. MULTI – Individual postings per each credit entry",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "statusCode",
+          "in" : "query",
+          "description" : "Status code, as defined by the institution",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fileSendersReference",
+          "in" : "query",
+          "description" : "Indicates the sender reference that comes from the inward payment file",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "requiredCreditValueDate",
+          "in" : "query",
+          "description" : "The credit value date i.e. tentative date on which the payment system will process the payment",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "AllBulkPaymentsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/AllBulkPaymentsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    },
+    "apiKey" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "PayloadHeader" : {
+      "properties" : {
+        "override" : {
+          "type" : "object",
+          "properties" : {
+            "overrideDetails" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "description" : "The identifier of the override."
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : "The actual override message."
+                  },
+                  "code" : {
+                    "type" : "string",
+                    "description" : "The code related to override message."
+                  },
+                  "responseCode" : {
+                    "type" : "string",
+                    "description" : "The user input to accept/reject the override."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            }
+          }
+        }
+      }
+    },
+    "File" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/FileBody"
+        }
+      },
+      "description" : "File"
+    },
+    "FileBody" : {
+      "type" : "object",
+      "properties" : {
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "systemFileName" : {
+          "type" : "string",
+          "description" : "Contains the system generated name for the uploaded file",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "fileName" : {
+          "type" : "string",
+          "description" : "Identifies the type of methods to be listed. Possible values are FX.DEAL.METHOD, BROKER or blank.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "uploadTypeId" : {
+          "type" : "string",
+          "description" : "Specifies the identifier of the upload type record which contains the directory, and optionally a maximum upload size limit and file extension.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "The status of the early maturity request",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "uploadSize" : {
+          "type" : "string",
+          "description" : "Contains the size of the upload",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "companyId" : {
+          "type" : "string",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "minLength" : 0,
+          "maxLength" : 25
+        }
+      }
+    },
+    "ScreenHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "FileResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/FileResponseBody"
+        }
+      },
+      "description" : "FileResponse"
+    },
+    "FileResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "systemFileName" : {
+          "type" : "string",
+          "description" : "Contains the system generated name for the uploaded file",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "fileName" : {
+          "type" : "string",
+          "description" : "Identifies the type of methods to be listed. Possible values are FX.DEAL.METHOD, BROKER or blank.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "uploadTypeId" : {
+          "type" : "string",
+          "description" : "Specifies the identifier of the upload type record which contains the directory, and optionally a maximum upload size limit and file extension.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "The status of the early maturity request",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "uploadSize" : {
+          "type" : "string",
+          "description" : "Contains the size of the upload",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "companyId" : {
+          "type" : "string",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "minLength" : 0,
+          "maxLength" : 25
+        }
+      }
+    },
+    "ErrorHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "overrideBody" : {
+      "properties" : {
+        "overrideDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "description" : "The identifier of the override."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The actual override message."
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The code related to override message."
+              },
+              "options" : {
+                "type" : "array",
+                "description" : "The usable options for the override.",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "The type of the override."
+              }
+            }
+          }
+        }
+      }
+    },
+    "ScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/ScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "ScreenErrorResponse"
+    },
+    "ScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message "
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "BusinessScreenErrorResponse"
+    },
+    "BusinessScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message for bad requests"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "SystemScreenErrorResponse"
+    },
+    "SystemScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message caused by server"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "BulkMasterPayment" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/BulkMasterPaymentBody"
+        }
+      },
+      "description" : "BulkMasterPayment"
+    },
+    "BulkMasterPaymentBody" : {
+      "type" : "object",
+      "properties" : {
+        "signatories" : {
+          "type" : "array",
+          "description" : "Indicates the authorised signatories for the payments. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "signatory" : {
+                "type" : "string",
+                "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "rejectionReasons" : {
+          "type" : "array",
+          "description" : "Contains the remarks given for rejection.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "returnOrRejectDescription" : {
+                "type" : "string",
+                "description" : "Contains short additional information on the reason why the payment was returned, refunded or rejected.",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "rejectRemarks" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "rejectRemark" : {
+                      "type" : "string",
+                      "description" : "Contains the remarks given for rejection.",
+                      "minLength" : 0,
+                      "maxLength" : 12
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "overrides" : {
+          "type" : "array",
+          "description" : "The override message is captured  that was generated at the time of commitment of the transaction to the database.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "override" : {
+                "type" : "string",
+                "description" : "The override message is captured  that was generated at the time of commitment of the transaction to the database.",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "cancellationReasons" : {
+          "type" : "array",
+          "description" : "Contains the remarks given for cancellation.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "cancellationReason" : {
+                "type" : "string",
+                "description" : "The reason for the cancellation",
+                "minLength" : 0,
+                "maxLength" : 18
+              },
+              "cancelInitiatedBy" : {
+                "type" : "string",
+                "description" : "Contains the party initiating the payment cancellation. Examples are BANK or CUSTOMER.",
+                "minLength" : 0,
+                "maxLength" : 17
+              },
+              "cancelRemarks" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "cancelRemark" : {
+                      "type" : "string",
+                      "description" : "Contains the remarks given for cancellation.",
+                      "minLength" : 0,
+                      "maxLength" : 12
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "errorDetails" : {
+          "type" : "array",
+          "description" : "Error details of the Bundle account",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "errorDetail" : {
+                "type" : "string",
+                "description" : "Error details of the Bundle account",
+                "minLength" : 0,
+                "maxLength" : 11
+              }
+            }
+          }
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Contains the description of purpose of the payment.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "bulkTypeId" : {
+          "type" : "string",
+          "description" : "Identifier of the bulk update type record that holds default conditions required for Bulk Master creation. SINGLE and MULTI are two record references used by payment order application for processing payments induced through Bulk Master.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "creditOrDebitPayment" : {
+          "type" : "string",
+          "description" : "Indicates whether the Bulk processing is for Credit or Debit Payments. Allowed values are DEBIT, CREDIT.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "singleOrmultiplePayments" : {
+          "type" : "string",
+          "description" : "Indicates the batch booking preference of the bulk payment. SINGLE – Single consolidated accounting entry on the debtor account. MULTI – Individual postings per each credit entry",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "paymentMethod" : {
+          "type" : "string",
+          "description" : "Method chosen to make the payment",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "processingDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The date when payment instruction is processed in system."
+        },
+        "requiredCreditValueDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The credit value date i.e. tentative date on which the payment system will process the payment"
+        },
+        "clearingDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Contains the date from which the payment is expected and is used to indicate the exposure date for the payment."
+        },
+        "uploadId" : {
+          "type" : "string",
+          "description" : "The unique identifier of the uploaded file",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "netAmount" : {
+          "type" : "number",
+          "description" : "Holds the total amount",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "debitReference" : {
+          "type" : "string",
+          "description" : "Reference for debit party of a payment transaction",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "creditReference" : {
+          "type" : "string",
+          "description" : "Reference quoted by the credit account for a payment",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "statusCode" : {
+          "type" : "string",
+          "description" : "Status code, as defined by the institution",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "totalAmount" : {
+          "type" : "number",
+          "description" : "Total amount",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "countOfRecords" : {
+          "type" : "string",
+          "description" : "Total count of records information for NOFILE (an enquiry does not exist in a single file) enquiry for online upgrade",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "errorCount" : {
+          "type" : "string",
+          "description" : "Contains the number of records in error.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "debitAccount" : {
+          "type" : "string",
+          "description" : " Identifier of the debitAccounts.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "currency" : {
+          "type" : "string",
+          "description" : "Identifies the currency. E.g. USD, GBP etc",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "intermediaryInstitutionAccount" : {
+          "type" : "string",
+          "description" : "Contains the intermediate account which will be used to hold the funds if the bulk processing is set to receive only single debit or credit.",
+          "minLength" : 0,
+          "maxLength" : 30
+        },
+        "recordStatus" : {
+          "type" : "string",
+          "description" : "General status of the record. Possible values: - null - authorised - IHLD - input, on hold - INAU - input, not authorised - INA2 - input, authorised, pending second authorisation - INAO - input, not authorised with blocking overrides - RNAU - reversed, not authorised - RNAO - reversed, not authorised with blocking overrides",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "creationDateTime" : {
+          "type" : "string",
+          "description" : "Date and Time of the message creation.",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "customerId" : {
+          "type" : "string",
+          "description" : "Identifier of the customer",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "fileUpload" : {
+          "type" : "string",
+          "description" : "Uses a file browser to locate and display the file. ",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "numberOfItems" : {
+          "type" : "string",
+          "description" : "Contains the total number of items, as captured during bulk creation.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "bulkReference" : {
+          "type" : "string",
+          "description" : "Contains bulk master reference for the payment.",
+          "minLength" : 0,
+          "maxLength" : 13
+        }
+      }
+    },
+    "BulkMasterPaymentResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/BulkMasterPaymentResponseBody"
+        }
+      },
+      "description" : "BulkMasterPaymentResponse"
+    },
+    "BulkMasterPaymentResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "signatories" : {
+          "type" : "array",
+          "description" : "Indicates the authorised signatories for the payments. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "signatory" : {
+                "type" : "string",
+                "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "rejectionReasons" : {
+          "type" : "array",
+          "description" : "Contains the remarks given for rejection.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "returnOrRejectDescription" : {
+                "type" : "string",
+                "description" : "Contains short additional information on the reason why the payment was returned, refunded or rejected.",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "rejectRemarks" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "rejectRemark" : {
+                      "type" : "string",
+                      "description" : "Contains the remarks given for rejection.",
+                      "minLength" : 0,
+                      "maxLength" : 12
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "overrides" : {
+          "type" : "array",
+          "description" : "The override message is captured  that was generated at the time of commitment of the transaction to the database.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "override" : {
+                "type" : "string",
+                "description" : "The override message is captured  that was generated at the time of commitment of the transaction to the database.",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "cancellationReasons" : {
+          "type" : "array",
+          "description" : "Contains the remarks given for cancellation.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "cancellationReason" : {
+                "type" : "string",
+                "description" : "The reason for the cancellation",
+                "minLength" : 0,
+                "maxLength" : 18
+              },
+              "cancelInitiatedBy" : {
+                "type" : "string",
+                "description" : "Contains the party initiating the payment cancellation. Examples are BANK or CUSTOMER.",
+                "minLength" : 0,
+                "maxLength" : 17
+              },
+              "cancelRemarks" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "cancelRemark" : {
+                      "type" : "string",
+                      "description" : "Contains the remarks given for cancellation.",
+                      "minLength" : 0,
+                      "maxLength" : 12
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "errorDetails" : {
+          "type" : "array",
+          "description" : "Error details of the Bundle account",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "errorDetail" : {
+                "type" : "string",
+                "description" : "Error details of the Bundle account",
+                "minLength" : 0,
+                "maxLength" : 11
+              }
+            }
+          }
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Contains the description of purpose of the payment.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "bulkTypeId" : {
+          "type" : "string",
+          "description" : "Identifier of the bulk update type record that holds default conditions required for Bulk Master creation. SINGLE and MULTI are two record references used by payment order application for processing payments induced through Bulk Master.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "creditOrDebitPayment" : {
+          "type" : "string",
+          "description" : "Indicates whether the Bulk processing is for Credit or Debit Payments. Allowed values are DEBIT, CREDIT.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "singleOrmultiplePayments" : {
+          "type" : "string",
+          "description" : "Indicates the batch booking preference of the bulk payment. SINGLE – Single consolidated accounting entry on the debtor account. MULTI – Individual postings per each credit entry",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "paymentMethod" : {
+          "type" : "string",
+          "description" : "Method chosen to make the payment",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "processingDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The date when payment instruction is processed in system."
+        },
+        "requiredCreditValueDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The credit value date i.e. tentative date on which the payment system will process the payment"
+        },
+        "clearingDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Contains the date from which the payment is expected and is used to indicate the exposure date for the payment."
+        },
+        "uploadId" : {
+          "type" : "string",
+          "description" : "The unique identifier of the uploaded file",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "netAmount" : {
+          "type" : "number",
+          "description" : "Holds the total amount",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "debitReference" : {
+          "type" : "string",
+          "description" : "Reference for debit party of a payment transaction",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "creditReference" : {
+          "type" : "string",
+          "description" : "Reference quoted by the credit account for a payment",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "statusCode" : {
+          "type" : "string",
+          "description" : "Status code, as defined by the institution",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "totalAmount" : {
+          "type" : "number",
+          "description" : "Total amount",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "countOfRecords" : {
+          "type" : "string",
+          "description" : "Total count of records information for NOFILE (an enquiry does not exist in a single file) enquiry for online upgrade",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "errorCount" : {
+          "type" : "string",
+          "description" : "Contains the number of records in error.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "debitAccount" : {
+          "type" : "string",
+          "description" : " Identifier of the debitAccounts.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "currency" : {
+          "type" : "string",
+          "description" : "Identifies the currency. E.g. USD, GBP etc",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "intermediaryInstitutionAccount" : {
+          "type" : "string",
+          "description" : "Contains the intermediate account which will be used to hold the funds if the bulk processing is set to receive only single debit or credit.",
+          "minLength" : 0,
+          "maxLength" : 30
+        },
+        "recordStatus" : {
+          "type" : "string",
+          "description" : "General status of the record. Possible values: - null - authorised - IHLD - input, on hold - INAU - input, not authorised - INA2 - input, authorised, pending second authorisation - INAO - input, not authorised with blocking overrides - RNAU - reversed, not authorised - RNAO - reversed, not authorised with blocking overrides",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "creationDateTime" : {
+          "type" : "string",
+          "description" : "Date and Time of the message creation.",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "customerId" : {
+          "type" : "string",
+          "description" : "Identifier of the customer",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "fileUpload" : {
+          "type" : "string",
+          "description" : "Uses a file browser to locate and display the file. ",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "numberOfItems" : {
+          "type" : "string",
+          "description" : "Contains the total number of items, as captured during bulk creation.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "bulkReference" : {
+          "type" : "string",
+          "description" : "Contains bulk master reference for the payment.",
+          "minLength" : 0,
+          "maxLength" : 13
+        }
+      }
+    },
+    "UploadFileDelete" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        }
+      },
+      "description" : "UploadFileDelete"
+    },
+    "BulkPaymentDelete" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        }
+      },
+      "description" : "BulkPaymentDelete"
+    },
+    "QueryHeader" : {
+      "properties" : {
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "page_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records per page"
+        },
+        "page_start" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The record from which the response should be displayed"
+        },
+        "total_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records present"
+        },
+        "page_token" : {
+          "type" : "string",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request"
+        }
+      }
+    },
+    "UploadFilesResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/UploadFilesResponseBody"
+        }
+      },
+      "description" : "UploadFilesResponse"
+    },
+    "UploadFilesResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "uploadId" : {
+            "type" : "string",
+            "description" : "The unique identifier of the uploaded file",
+            "maxLength" : 35
+          },
+          "displayName" : {
+            "type" : "string",
+            "description" : "Contains the name used for display or enrichment purposes",
+            "maxLength" : 50
+          },
+          "fileName" : {
+            "type" : "string",
+            "description" : "Identifies the type of methods to be listed. Possible values are FX.DEAL.METHOD, BROKER or blank.",
+            "maxLength" : 90
+          },
+          "serviceStatus" : {
+            "type" : "string",
+            "description" : "Contains the status of the upload service",
+            "maxLength" : 35
+          },
+          "dateTime" : {
+            "type" : "string",
+            "description" : "Contains the date and time separated by '-'",
+            "maxLength" : 15
+          },
+          "errorMessage" : {
+            "type" : "string",
+            "description" : "Contains the description of the error."
+          },
+          "userSignOnName" : {
+            "type" : "string",
+            "description" : "This is the name entered by the User to sign on to the System. It is used by the System as an alternative key to access User details",
+            "maxLength" : 35
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "The status of the early maturity request",
+            "maxLength" : 35
+          },
+          "systemFileName" : {
+            "type" : "string",
+            "description" : "Contains the system generated name for the uploaded file",
+            "maxLength" : 35
+          },
+          "headerId" : {
+            "type" : "string",
+            "description" : "Identifier of the inward or outward header",
+            "maxLength" : 200
+          },
+          "requestStatus" : {
+            "type" : "string",
+            "description" : "The current status of the request. The possible values includes New, send to printer, cancelled and processed."
+          },
+          "lastUpdateDate" : {
+            "type" : "string",
+            "description" : "Specifies the date of last update to the record.",
+            "maxLength" : 11
+          }
+        }
+      }
+    },
+    "QueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/QueryErrorResponseBody"
+        }
+      },
+      "description" : "QueryErrorResponse"
+    },
+    "QueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message "
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessQueryErrorResponseBody"
+        }
+      },
+      "description" : "BusinessQueryErrorResponse"
+    },
+    "BusinessQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message for bad requests"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemQueryErrorResponseBody"
+        }
+      },
+      "description" : "SystemQueryErrorResponse"
+    },
+    "SystemQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message caused by server"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "BulkPaymentsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/BulkPaymentsResponseBody"
+        }
+      },
+      "description" : "BulkPaymentsResponse"
+    },
+    "BulkPaymentsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "bulkReference" : {
+            "type" : "string",
+            "description" : "Contains bulk master reference for the payment.",
+            "maxLength" : 50
+          },
+          "displayName" : {
+            "type" : "string",
+            "description" : "Contains the name used for display or enrichment purposes"
+          },
+          "accountId" : {
+            "type" : "string",
+            "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN"
+          },
+          "currencyId" : {
+            "type" : "string",
+            "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+            "maxLength" : 3
+          },
+          "amount" : {
+            "type" : "string",
+            "description" : "This is the payment amount"
+          },
+          "requiredCreditValueDate" : {
+            "type" : "string",
+            "format" : "date",
+            "description" : "The credit value date i.e. tentative date on which the payment system will process the payment"
+          },
+          "totalAmount" : {
+            "type" : "number",
+            "description" : "Total amount",
+            "maximum" : 35
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "The status of the early maturity request",
+            "maxLength" : 35
+          },
+          "recordStatus" : {
+            "type" : "string",
+            "description" : "General status of the record. Possible values: - null - authorised - IHLD - input, on hold - INAU - input, not authorised - INA2 - input, authorised, pending second authorisation - INAO - input, not authorised with blocking overrides - RNAU - reversed, not authorised - RNAO - reversed, not authorised with blocking overrides",
+            "maxLength" : 25
+          },
+          "numberOfItems" : {
+            "type" : "string",
+            "description" : "Contains the total number of items, as captured during bulk creation.",
+            "maxLength" : 25
+          },
+          "valueDate" : {
+            "type" : "string",
+            "format" : "date",
+            "description" : "Indicates the value date on which the underlying accounting entry is to be given value (for interest purposes)"
+          },
+          "intermediaryInstitutionAccount" : {
+            "type" : "string",
+            "description" : "Contains the intermediate account which will be used to hold the funds if the bulk processing is set to receive only single debit or credit."
+          },
+          "creditOrDebitPayment" : {
+            "type" : "string",
+            "description" : "Indicates whether the Bulk processing is for Credit or Debit Payments. Allowed values are DEBIT, CREDIT."
+          },
+          "reference" : {
+            "type" : "string",
+            "description" : "Indicates the transaction reference for which the history of transactions is requested. It is steered by the attribute 'booked' given the start date and end date or the entry from which the history is requested"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date",
+            "description" : "Indicates the date on which activity was performed"
+          }
+        }
+      }
+    },
+    "AllBulkPaymentsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/AllBulkPaymentsResponseBody"
+        }
+      },
+      "description" : "AllBulkPaymentsResponse"
+    },
+    "AllBulkPaymentsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "errorDetails" : {
+            "type" : "array",
+            "description" : "Error details of the Bundle account",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "errorDetail" : {
+                  "type" : "string",
+                  "description" : "Error details of the Bundle account",
+                  "maxLength" : 100
+                }
+              }
+            }
+          },
+          "cancellationReasons" : {
+            "type" : "array",
+            "description" : "Contains the remarks given for cancellation.",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "cancellationReason" : {
+                  "type" : "string",
+                  "description" : "The reason for the cancellation",
+                  "maxLength" : 35
+                },
+                "cancelRemarks" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "cancelRemark" : {
+                        "type" : "string",
+                        "description" : "Contains the remarks given for cancellation.",
+                        "maxLength" : 35
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "rejectionReasons" : {
+            "type" : "array",
+            "description" : "Contains the remarks given for rejection.",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "returnOrRejectDescription" : {
+                  "type" : "string",
+                  "description" : "Contains short additional information on the reason why the payment was returned, refunded or rejected.",
+                  "maxLength" : 35
+                },
+                "rejectRemarks" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "rejectRemark" : {
+                        "type" : "string",
+                        "description" : "Contains the remarks given for rejection.",
+                        "maxLength" : 35
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "bulkTransferId" : {
+            "type" : "string",
+            "description" : "Identifier of the Bulk Transfer",
+            "maxLength" : 35
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Contains the description of purpose of the payment.",
+            "maxLength" : 35
+          },
+          "customerId" : {
+            "type" : "string",
+            "description" : "Identifier of the customer",
+            "maxLength" : 10
+          },
+          "executionDate" : {
+            "type" : "string",
+            "description" : "Date on which the transaction or payment gets processed, i.e. the processing date of the transaction.",
+            "maxLength" : 11
+          },
+          "requiredCreditValueDate" : {
+            "type" : "string",
+            "description" : "The credit value date i.e. tentative date on which the payment system will process the payment",
+            "maxLength" : 11
+          },
+          "debitAccount" : {
+            "type" : "string",
+            "description" : " Identifier of the debitAccounts.",
+            "maxLength" : 19
+          },
+          "totalAmount" : {
+            "type" : "string",
+            "description" : "Total amount",
+            "maxLength" : 35
+          },
+          "currency" : {
+            "type" : "string",
+            "description" : "Identifies the currency. E.g. USD, GBP etc",
+            "maxLength" : 3
+          },
+          "status" : {
+            "type" : "string",
+            "description" : "The status of the early maturity request",
+            "maxLength" : 35
+          },
+          "itemCount" : {
+            "type" : "string",
+            "description" : "Contains the count of bulk payment records",
+            "maxLength" : 35
+          },
+          "fileSendersReference" : {
+            "type" : "string",
+            "description" : "Indicates the sender reference that comes from the inward payment file",
+            "maxLength" : 35
+          },
+          "userSignOnName" : {
+            "type" : "string",
+            "description" : "This is the name entered by the User to sign on to the System. It is used by the System as an alternative key to access User details",
+            "maxLength" : 35
+          },
+          "categoryName" : {
+            "type" : "string",
+            "description" : "Name that is displayed for the product category",
+            "maxLength" : 19
+          },
+          "singleOrmultiplePayments" : {
+            "type" : "string",
+            "description" : "Indicates the batch booking preference of the bulk payment. SINGLE – Single consolidated accounting entry on the debtor account. MULTI – Individual postings per each credit entry",
+            "maxLength" : 35
+          },
+          "bulkReference" : {
+            "type" : "string",
+            "description" : "Contains bulk master reference for the payment.",
+            "maxLength" : 125
+          },
+          "creationDateTime" : {
+            "type" : "string",
+            "description" : "Date and Time of the message creation.",
+            "maxLength" : 35
+          },
+          "uploadId" : {
+            "type" : "string",
+            "description" : "The unique identifier of the uploaded file",
+            "maxLength" : 90
+          },
+          "bulkTypeId" : {
+            "type" : "string",
+            "description" : "Identifier of the bulk update type record that holds default conditions required for Bulk Master creation. SINGLE and MULTI are two record references used by payment order application for processing payments induced through Bulk Master.",
+            "maxLength" : 35
+          },
+          "errorType" : {
+            "type" : "string",
+            "description" : "Error types of the Bundle account",
+            "maxLength" : 35
+          },
+          "paymentOrderProduct" : {
+            "type" : "string",
+            "description" : "Indicates the payment order product for which payment is initiated"
+          }
+        }
+      }
+    }
+  }
+}

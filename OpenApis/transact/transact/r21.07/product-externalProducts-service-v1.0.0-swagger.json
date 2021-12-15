@@ -1,0 +1,2673 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Import external products",
+        "version": "v1.0.0",
+        "title": "Import of external products"
+    },
+    "host": "api.temenos.com",
+    "basePath": "/api/v1.0.0/",
+    "tags": [],
+    "schemes": [ "https" ],
+    "security": [{
+            "basicAuth": []
+        }, {
+            "apiKey": []
+        }
+    ],
+    "paths": {
+        "/product/loans/mortgages/externalProducts/{productId}": {
+            "get": {
+                "tags": [],
+                "summary": "Retrieves the product details for the given blueprint of Mortgage product",
+                "description": "Retrieves the product details of the given Mortgage product",
+                "operationId": "getExternalMortgageProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalMortgageProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalMortgageProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [],
+                "summary": "Creates the blueprint of Mortgage product with the provided details",
+                "description": "Creates a blueprint of Mortgage product",
+                "operationId": "createExternalMortgageProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalMortgageProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalMortgageProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalMortgageProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [],
+                "summary": "Updates the given blueprint of Mortgage product with the specified details",
+                "description": "Updates the blueprint of Mortgage product",
+                "operationId": "updateExternalMortgageProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalMortgageProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalMortgageProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalMortgageProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/accounts/currentAccounts/externalProducts/{productId}": {
+            "get": {
+                "tags": [],
+                "summary": "Retrieves the product details for the given blueprint of Current Account product",
+                "description": "Retrieves the product details of the given Current Account product",
+                "operationId": "getExternalCurrentAccountProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalCurrentAccountProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalCurrentAccountProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [],
+                "summary": "Creates the blueprint of Current Account product with the provided details",
+                "description": "Creates a blueprint of Current Account product",
+                "operationId": "createExternalCurrentAccountProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalCurrentAccountProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalCurrentAccountProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalCurrentAccountProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [],
+                "summary": "Updates the given blueprint of  Current Account product with the specified details",
+                "description": "Updates the blueprint of Current Account product",
+                "operationId": "updateExternalCurrentAccountProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalCurrentAccountProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalCurrentAccountProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalCurrentAccountProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/accounts/savingsAccounts/externalProducts/{productId}": {
+            "get": {
+                "tags": [],
+                "summary": "Retrieves the product details for the given blueprint of  Savings Account product",
+                "description": "Retrieves the product details of the given Savings Account product",
+                "operationId": "getExternalSavingsAccountProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalSavingsAccountProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalSavingsAccountProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [],
+                "summary": "Creates the blueprint of Savings Account  product with the provided details",
+                "description": "Creates a blueprint of  Savings Account  product",
+                "operationId": "createExternalSavingsAccountProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalSavingsAccountProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalSavingsAccountProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalSavingsAccountProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [],
+                "summary": "Updates the given blueprint of Savings Account product with the specified details",
+                "description": "Updates the blueprint of Savings Account product",
+                "operationId": "updateExternalSavingsAccountProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalSavingsAccountProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalSavingsAccountProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalSavingsAccountProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/deposits/termDeposits/externalProducts/{productId}": {
+            "post": {
+                "tags": [],
+                "summary": "Creates the  blueprint  of Deposit product wih the provided details",
+                "description": "Creates a blueprint of Deposit  product",
+                "operationId": "createExternalDepositProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalDepositProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalDepositProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalDepositProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [],
+                "summary": "Updates the given blueprint of  Deposit product with specified details",
+                "description": "Updates the blueprint of  Deposit product",
+                "operationId": "updateExternalDepositProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "body Payload",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ExternalDepositProduct"
+                        }
+                    }, {
+                        "name": "validate_only",
+                        "in": "query",
+                        "description": "The identifier to indicate if it is set to only validate or not.",
+                        "required": false,
+                        "type": "boolean"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalDepositProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalDepositProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/deposits/termDepsoits/externalProducts/{productId}": {
+            "get": {
+                "tags": [],
+                "summary": "Retrieves the product details of the given  blueprint of  Deposit product",
+                "description": "Retrieves the product details of the given Deposit product",
+                "operationId": "getExternalDepositProduct",
+                "produces": ["application/json"],
+                "parameters": [{
+                        "name": "productId",
+                        "in": "path",
+                        "description": "Contains the unique identifier of the product, e.g. the product id of the arrangement account.",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "credentials",
+                        "in": "header",
+                        "description": "Username and password to authenticate the API against core-banking.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "companyId",
+                        "in": "header",
+                        "description": "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "deviceId",
+                        "in": "header",
+                        "description": "Identifies the device type",
+                        "required": false,
+                        "type": "string"
+                    }, {
+                        "name": "userRole",
+                        "in": "header",
+                        "description": "User who initiated the transaction",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ExternalDepositProductResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalDepositProductResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "ScreenErrorResponse",
+                        "schema": {
+                            "$ref": "#/definitions/ScreenErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "basicAuth": {
+            "type": "basic"
+        },
+        "apiKey": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "PayloadHeader": {
+            "properties": {
+                "override": {
+                    "type": "object",
+                    "properties": {
+                        "overrideDetails": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "description": "The identifier of the override."
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "The actual override message."
+                                    },
+                                    "code": {
+                                        "type": "string",
+                                        "description": "The code related to override message."
+                                    },
+                                    "responseCode": {
+                                        "type": "string",
+                                        "description": "The user input to accept/reject the override."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "audit": {
+                    "type": "object",
+                    "properties": {
+                        "versionNumber": {
+                            "type": "string",
+                            "description": "The CURR.NO. of the record"
+                        }
+                    }
+                }
+            }
+        },
+        "ExternalMortgageProduct": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/PayloadHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalMortgageProductBody"
+                }
+            },
+            "description": "ExternalMortgageProduct"
+        },
+        "ExternalMortgageProductBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineOfBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "principals": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "fixedRate": {
+                                "type": "string",
+                                "description": "A fixed rate is directly entered by the user specifying the Defined Property and is not defined by an index table.Three basic types of interest are supported by T24; Fixed, Floating, and Periodic. "
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepPaymentMethod": {
+                                "type": "string",
+                                "description": "Indicates the payment method associated"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            },
+                            "scheduleProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleProperty": {
+                                            "type": "string",
+                                            "description": "The payment schedule property"
+                                        }
+                                    }
+                                }
+                            },
+                            "scheduleDates": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleStartDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the start date of the schedule"
+                                        },
+                                        "scheduleEndDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the end date of the schedule"
+                                        },
+                                        "scheduleActualAmt": {
+                                            "type": "string",
+                                            "description": "Indicates the actual schedule amount"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "commitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the term of the commitment"
+                },
+                "commitmentCancelPeriod": {
+                    "type": "string",
+                    "description": "Indicates the period after which if full committed deposit amount is not paid by the customer, then system shall trigger cancellation of deposits. For lending , cancel arrangement activity will be triggered if the loan amount is not disbursed fully"
+                },
+                "commitmentCoolingPeriod": {
+                    "type": "string",
+                    "description": "Indicates the number of days to be considered for closure of account after renewal or rollover date for the commitment"
+                },
+                "minCommitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the maximum term to which commitment is capped"
+                },
+                "maxCommitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the minimum term to which commitment is capped"
+                },
+                "newarrfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the new arrangement creation"
+                },
+                "payofffeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the payoff"
+                },
+                "renewalChangeDateType": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Determines whether the product change should happen within the given period or on reaching maturity of the arrangement"
+                },
+                "renewalChangePeriod": {
+                    "type": "string",
+                    "description": "Denotes the period after which the user can change the arrangement from one product to another"
+                }
+            }
+        },
+        "ScreenHeader": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The Identifier of the record created"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the record"
+                },
+                "transactionStatus": {
+                    "type": "string",
+                    "description": "The status of the transaction"
+                },
+                "audit": {
+                    "type": "object",
+                    "properties": {
+                        "T24_time": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Time taken to response by T24"
+                        },
+                        "versionNumber": {
+                            "type": "string",
+                            "description": "The CURR.NO. of the record"
+                        },
+                        "parse_time": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Time taken to parse the response by IRIS"
+                        }
+                    }
+                }
+            }
+        },
+        "ExternalMortgageProductResponse": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/ScreenHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalMortgageProductResponseBody"
+                }
+            },
+            "description": "ExternalMortgageProductResponse"
+        },
+        "ExternalMortgageProductResponseBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineOfBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "principals": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "fixedRate": {
+                                "type": "string",
+                                "description": "A fixed rate is directly entered by the user specifying the Defined Property and is not defined by an index table.Three basic types of interest are supported by T24; Fixed, Floating, and Periodic. "
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepPaymentMethod": {
+                                "type": "string",
+                                "description": "Indicates the payment method associated"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            },
+                            "scheduleProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleProperty": {
+                                            "type": "string",
+                                            "description": "The payment schedule property"
+                                        }
+                                    }
+                                }
+                            },
+                            "scheduleDates": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleStartDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the start date of the schedule"
+                                        },
+                                        "scheduleEndDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the end date of the schedule"
+                                        },
+                                        "scheduleActualAmt": {
+                                            "type": "string",
+                                            "description": "Indicates the actual schedule amount"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "commitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the term of the commitment"
+                },
+                "commitmentCancelPeriod": {
+                    "type": "string",
+                    "description": "Indicates the period after which if full committed deposit amount is not paid by the customer, then system shall trigger cancellation of deposits. For lending , cancel arrangement activity will be triggered if the loan amount is not disbursed fully"
+                },
+                "commitmentCoolingPeriod": {
+                    "type": "string",
+                    "description": "Indicates the number of days to be considered for closure of account after renewal or rollover date for the commitment"
+                },
+                "minCommitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the maximum term to which commitment is capped"
+                },
+                "maxCommitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the minimum term to which commitment is capped"
+                },
+                "newarrfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the new arrangement creation"
+                },
+                "payofffeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the payoff"
+                },
+                "renewalChangeDateType": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Determines whether the product change should happen within the given period or on reaching maturity of the arrangement"
+                },
+                "renewalChangePeriod": {
+                    "type": "string",
+                    "description": "Denotes the period after which the user can change the arrangement from one product to another"
+                }
+            }
+        },
+        "ErrorHeader": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The Identifier of the record created"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the record"
+                },
+                "transactionStatus": {
+                    "type": "string",
+                    "description": "The status of the transaction"
+                },
+                "audit": {
+                    "type": "object",
+                    "properties": {
+                        "T24_time": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Time taken to response by T24"
+                        },
+                        "versionNumber": {
+                            "type": "string",
+                            "description": "The CURR.NO. of the record"
+                        },
+                        "parse_time": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Time taken to parse the response by IRIS"
+                        }
+                    }
+                }
+            }
+        },
+        "overrideBody": {
+            "properties": {
+                "overrideDetails": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "description": "The identifier of the override"
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "The actual override message"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ScreenErrorResponse": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/ErrorHeader"
+                },
+                "error": {
+                    "$ref": "#/definitions/ScreenErrorResponseBody"
+                },
+                "override": {
+                    "$ref": "#/definitions/overrideBody"
+                }
+            },
+            "description": "ScreenErrorResponse"
+        },
+        "ScreenErrorResponseBody": {
+            "type": "object",
+            "properties": {
+                "errorDetails": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "fieldName": {
+                                "type": "string",
+                                "description": "The name of the field"
+                            },
+                            "code": {
+                                "type": "string",
+                                "description": "The identifier of the error message"
+                            },
+                            "message": {
+                                "type": "string",
+                                "description": "The actual t24 error message"
+                            }
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The identifier of error type"
+                }
+            }
+        },
+        "ExternalCurrentAccountProduct": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/PayloadHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalCurrentAccountProductBody"
+                }
+            },
+            "description": "ExternalCurrentAccountProduct"
+        },
+        "ExternalCurrentAccountProductBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineofBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "creditInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "creditInterestFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for credit interest"
+                            }
+                        }
+                    }
+                },
+                "debitInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "debitInterestFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for the debit interest"
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            }
+                        }
+                    }
+                },
+                "periodiccharges": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "periodicchargeCurrency": {
+                                "type": "string",
+                                "description": "Indicates the currency for the periodic charge"
+                            },
+                            "periodicchargeMaxChgAmount": {
+                                "type": "number",
+                                "description": "Indicates the maximum charge amount that can be specified for the associated currency attribute"
+                            },
+                            "periodicchargeMinChgAmount": {
+                                "type": "number",
+                                "description": "Indicates the minimum charge amount that can be specified for the associated currency attribute"
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "chequewdFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for cheque withdrawal"
+                },
+                "highestdebitFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the highest debit"
+                },
+                "balanceAvailabilityCreditCheck": {
+                    "type": "string",
+                    "description": "Identifies on which balance, overdraft and limit checking should be made"
+                },
+                "balanceAvailabilityAvailBalanceUpdate": {
+                    "type": "string",
+                    "description": "Identifies the options available for building the available balance on an account"
+                },
+                "balanceAvailabilityOverdraftProcessing": {
+                    "type": "string",
+                    "description": "Indicates if the account supports NSF processing or not"
+                },
+                "mgmtfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed management fee"
+                },
+                "cardissuefeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for  visa card issuing"
+                },
+                "limitfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for limit utilization"
+                },
+                "payfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for overdraft transaction"
+                },
+                "returnfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed  for rejecting unauthorized overdraft transactionsthe payoff"
+                },
+                "nsfreversalfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the reversal credit of a NSF charge"
+                }
+            }
+        },
+        "ExternalCurrentAccountProductResponse": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/ScreenHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalCurrentAccountProductResponseBody"
+                }
+            },
+            "description": "ExternalCurrentAccountProductResponse"
+        },
+        "ExternalCurrentAccountProductResponseBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineofBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "creditInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "creditInterestFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for credit interest"
+                            }
+                        }
+                    }
+                },
+                "debitInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "debitInterestFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for the debit interest"
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            }
+                        }
+                    }
+                },
+                "periodiccharges": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "periodicchargeCurrency": {
+                                "type": "string",
+                                "description": "Indicates the currency for the periodic charge"
+                            },
+                            "periodicchargeMaxChgAmount": {
+                                "type": "number",
+                                "description": "Indicates the maximum charge amount that can be specified for the associated currency attribute"
+                            },
+                            "periodicchargeMinChgAmount": {
+                                "type": "number",
+                                "description": "Indicates the minimum charge amount that can be specified for the associated currency attribute"
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "chequewdFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for cheque withdrawal"
+                },
+                "highestdebitFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the highest debit"
+                },
+                "balanceAvailabilityCreditCheck": {
+                    "type": "string",
+                    "description": "Identifies on which balance, overdraft and limit checking should be made"
+                },
+                "balanceAvailabilityAvailBalanceUpdate": {
+                    "type": "string",
+                    "description": "Identifies the options available for building the available balance on an account"
+                },
+                "balanceAvailabilityOverdraftProcessing": {
+                    "type": "string",
+                    "description": "Indicates if the account supports NSF processing or not"
+                },
+                "mgmtfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed management fee"
+                },
+                "cardissuefeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for  visa card issuing"
+                },
+                "limitfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for limit utilization"
+                },
+                "payfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for overdraft transaction"
+                },
+                "returnfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed  for rejecting unauthorized overdraft transactionsthe payoff"
+                },
+                "nsfreversalfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the reversal credit of a NSF charge"
+                }
+            }
+        },
+        "ExternalSavingsAccountProduct": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/PayloadHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalSavingsAccountProductBody"
+                }
+            },
+            "description": "ExternalSavingsAccountProduct"
+        },
+        "ExternalSavingsAccountProductBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineOfBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "creditInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "crinterestFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for the credit interest"
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            },
+                            "scheduleProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleProperty": {
+                                            "type": "string",
+                                            "description": "The payment schedule property"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "balanceAvailabilityCreditCheck": {
+                    "type": "string",
+                    "description": "Identifies on which balance, overdraft and limit checking should be made"
+                },
+                "balanceAvailabilityAvailBalanceUpdate": {
+                    "type": "string",
+                    "description": "Identifies the options available for building the available balance on an account"
+                },
+                "mgmtfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed management fee"
+                },
+                "limitfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for limit utilization"
+                },
+                "payfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for overdraft transaction"
+                },
+                "returnfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed  for rejecting unauthorized overdraft transactionsthe payoff"
+                },
+                "nsfreversalfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the reversal credit of a NSF charge"
+                },
+                "minbalfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed amount that will be charged if minimum balance is not maintained in the account"
+                }
+            }
+        },
+        "ExternalSavingsAccountProductResponse": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/ScreenHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalSavingsAccountProductResponseBody"
+                }
+            },
+            "description": "ExternalSavingsAccountProductResponse"
+        },
+        "ExternalSavingsAccountProductResponseBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineOfBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "creditInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "crinterestFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for the credit interest"
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            },
+                            "scheduleProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleProperty": {
+                                            "type": "string",
+                                            "description": "The payment schedule property"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "balanceAvailabilityCreditCheck": {
+                    "type": "string",
+                    "description": "Identifies on which balance, overdraft and limit checking should be made"
+                },
+                "balanceAvailabilityAvailBalanceUpdate": {
+                    "type": "string",
+                    "description": "Identifies the options available for building the available balance on an account"
+                },
+                "mgmtfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed management fee"
+                },
+                "limitfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for limit utilization"
+                },
+                "payfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for overdraft transaction"
+                },
+                "returnfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed  for rejecting unauthorized overdraft transactionsthe payoff"
+                },
+                "nsfreversalfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the monetary amount that is fixed for the reversal credit of a NSF charge"
+                },
+                "minbalfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed amount that will be charged if minimum balance is not maintained in the account"
+                }
+            }
+        },
+        "ExternalDepositProduct": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/PayloadHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalDepositProductBody"
+                }
+            },
+            "description": "ExternalDepositProduct"
+        },
+        "ExternalDepositProductBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineOfBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "depositInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "depositintFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for deposit interest"
+                            },
+                            "depositintTierNegativeRate": {
+                                "type": "string",
+                                "description": "The negative rate that can be applied for each tier for deposit interest condition"
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepPaymentMethod": {
+                                "type": "string",
+                                "description": "Indicates the payment method associated"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            },
+                            "scheduleProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleProperty": {
+                                            "type": "string",
+                                            "description": "The payment schedule property"
+                                        }
+                                    }
+                                }
+                            },
+                            "scheduleDates": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleStartDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the start date of the schedule"
+                                        },
+                                        "scheduleEndDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the end date of the schedule"
+                                        },
+                                        "scheduleActualAmt": {
+                                            "type": "string",
+                                            "description": "Indicates the actual schedule amount"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "commitmentAmount": {
+                    "type": "number",
+                    "description": "Indicates the total amount which will be lent or deposited for the term"
+                },
+                "commitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the term of the commitment"
+                },
+                "commitmentTermTolDays": {
+                    "type": "string",
+                    "description": "Denotes the tolerance value in days to indicate that term will be recalculated only if adjustment in maturity date is greater than the tolerance days speficied"
+                },
+                "commitmentCancelPeriod": {
+                    "type": "string",
+                    "description": "Indicates the period after which if full committed deposit amount is not paid by the customer, then system shall trigger cancellation of deposits. For lending , cancel arrangement activity will be triggered if the loan amount is not disbursed fully"
+                },
+                "commitmentCoolingPeriod": {
+                    "type": "string",
+                    "description": "Indicates the number of days to be considered for closure of account after renewal or rollover date for the commitment"
+                },
+                "minCommitmentAmount": {
+                    "type": "number",
+                    "description": "Indicates the minimum commitment amount"
+                },
+                "maxCommitmentAmount": {
+                    "type": "number",
+                    "description": "Indicates the maximum commitment amount"
+                },
+                "maxCommitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the minimum term to which commitment is capped"
+                },
+                "mgmtfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed management fee"
+                },
+                "redemptionfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed amount charged for the ealry redemption"
+                },
+                "renewalChangeDateType": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Determines whether the product change should happen within the given period or on reaching maturity of the arrangement"
+                },
+                "renewalChangePeriod": {
+                    "type": "string",
+                    "description": "Denotes the period after which the user can change the arrangement from one product to another"
+                }
+            }
+        },
+        "ExternalDepositProductResponse": {
+            "properties": {
+                "header": {
+                    "$ref": "#/definitions/ScreenHeader"
+                },
+                "body": {
+                    "$ref": "#/definitions/ExternalDepositProductResponseBody"
+                }
+            },
+            "description": "ExternalDepositProductResponse"
+        },
+        "ExternalDepositProductResponseBody": {
+            "type": "object",
+            "properties": {
+                "displayNames": {
+                    "type": "array",
+                    "description": "The name used for display purposes",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "The name used for display purposes"
+                            }
+                        }
+                    }
+                },
+                "organizations": {
+                    "type": "array",
+                    "description": "Indicates the product availability for organization",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organizationLevel": {
+                                "type": "string",
+                                "description": "Indicates the level of the organization"
+                            },
+                            "organizationCode": {
+                                "type": "string",
+                                "description": "Indicates the organization code within the associated Level"
+                            },
+                            "organizationExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "lineOfBusinesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "lineOfBusiness": {
+                                "type": "string",
+                                "description": "Contains the line of business in which the activity was performed. If pricing is not determined based on line of business, then this is not significant"
+                            },
+                            "lineOfBusinessExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the organisation is excluded.By default,it will be included"
+                            }
+                        }
+                    }
+                },
+                "channels": {
+                    "type": "array",
+                    "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "channel": {
+                                "type": "string",
+                                "description": "Indicates the channel in which the activity was performed. If pricing is not determined based on channel, then this is not significant"
+                            },
+                            "channelExclude": {
+                                "type": "string",
+                                "description": "Indicates whether the channel is excluded.By default, it will be included"
+                            }
+                        }
+                    }
+                },
+                "depositInterests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "depositintFixedRate": {
+                                "type": "string",
+                                "description": "Indicates the fixed rate for deposit interest"
+                            },
+                            "depositintTierNegativeRate": {
+                                "type": "string",
+                                "description": "The negative rate that can be applied for each tier for deposit interest condition"
+                            }
+                        }
+                    }
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "schedulePaymentType": {
+                                "type": "string",
+                                "description": "The payment schedule type"
+                            },
+                            "schedulepPaymentMethod": {
+                                "type": "string",
+                                "description": "Indicates the payment method associated"
+                            },
+                            "schedulepaymentFrequency": {
+                                "type": "string",
+                                "description": "The frequency of the payment schedule"
+                            },
+                            "scheduleProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleProperty": {
+                                            "type": "string",
+                                            "description": "The payment schedule property"
+                                        }
+                                    }
+                                }
+                            },
+                            "scheduleDates": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scheduleStartDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the start date of the schedule"
+                                        },
+                                        "scheduleEndDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Indicates the end date of the schedule"
+                                        },
+                                        "scheduleActualAmt": {
+                                            "type": "string",
+                                            "description": "Indicates the actual schedule amount"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "optionDescription": {
+                    "type": "string",
+                    "description": "The description of the Option"
+                },
+                "product": {
+                    "type": "string",
+                    "description": "Indicates an id or name of a product"
+                },
+                "availableFromDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date when the product is available for creating arrangements"
+                },
+                "expiryDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date an agreement such as a credit facility or limit is due to expire"
+                },
+                "effectiveDate": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Contains the identifier for the transaction date. Dates are expected in ‘YYYYMMDD’ format"
+                },
+                "currency": {
+                    "type": "string",
+                    "description": "Identifies the currency. E.g. USD, GBP etc"
+                },
+                "variation": {
+                    "type": "string",
+                    "description": "Additional product specification based on particular criteria for example the account was opened on-line and attracted a higher interest rate. Drop down list to select appropriate variation or applied automatically"
+                },
+                "commitmentAmount": {
+                    "type": "number",
+                    "description": "Indicates the total amount which will be lent or deposited for the term"
+                },
+                "commitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the term of the commitment"
+                },
+                "commitmentTermTolDays": {
+                    "type": "string",
+                    "description": "Denotes the tolerance value in days to indicate that term will be recalculated only if adjustment in maturity date is greater than the tolerance days speficied"
+                },
+                "commitmentCancelPeriod": {
+                    "type": "string",
+                    "description": "Indicates the period after which if full committed deposit amount is not paid by the customer, then system shall trigger cancellation of deposits. For lending , cancel arrangement activity will be triggered if the loan amount is not disbursed fully"
+                },
+                "commitmentCoolingPeriod": {
+                    "type": "string",
+                    "description": "Indicates the number of days to be considered for closure of account after renewal or rollover date for the commitment"
+                },
+                "minCommitmentAmount": {
+                    "type": "number",
+                    "description": "Indicates the minimum commitment amount"
+                },
+                "maxCommitmentAmount": {
+                    "type": "number",
+                    "description": "Indicates the maximum commitment amount"
+                },
+                "maxCommitmentTerm": {
+                    "type": "string",
+                    "description": "Indicates the minimum term to which commitment is capped"
+                },
+                "mgmtfeesFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed management fee"
+                },
+                "redemptionfeeFixedAmount": {
+                    "type": "number",
+                    "description": "Indicates the fixed amount charged for the ealry redemption"
+                },
+                "renewalChangeDateType": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Determines whether the product change should happen within the given period or on reaching maturity of the arrangement"
+                },
+                "renewalChangePeriod": {
+                    "type": "string",
+                    "description": "Denotes the period after which the user can change the arrangement from one product to another"
+                }
+            }
+        }
+    }
+}

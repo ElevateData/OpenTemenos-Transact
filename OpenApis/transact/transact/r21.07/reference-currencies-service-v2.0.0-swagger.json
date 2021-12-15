@@ -1,0 +1,2554 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API to retrieve the list of currencies that are available in the system including the buy and sell rate defined for each currency. Each currency is identified by its ISO currency code.",
+    "version" : "v2.0.0",
+    "title" : "Currencies"
+  },
+  "host" : "api.temenos.com",
+  "basePath" : "/api/v2.0.0/",
+  "tags" : [ ],
+  "schemes" : ["https" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  }, {
+    "apiKey" : [ ]
+  } ],
+  "paths" : {
+    "/reference/currencies" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves Currencies details",
+        "description" : "Retrieves list of the Currencies (ISO 4217 codes) that are defined in the system",
+        "operationId" : "getCurrencies",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "query",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "currencyIdNE",
+          "in" : "query",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from t24 on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrenciesResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrenciesResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reference/currencies/{currencyId}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves currency details",
+        "description" : "Retrieves  details such as currency code, buy rate, sell rate, spread, rank and rounding type",
+        "operationId" : "getCurrencyInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ ],
+        "summary" : "Creates currency details",
+        "description" : "Creates details such as currency code, buy rate, sell rate, spread, rank and rounding type",
+        "operationId" : "createCurrencyInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyInfo"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Updates currency details",
+        "description" : "Updates details such as currency code, buy rate, sell rate, spread, rank and rounding type",
+        "operationId" : "updateCurrencyInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyInfo"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ ],
+        "summary" : "Deletes currency details",
+        "description" : "Deletes details such as currency code, buy rate, sell rate, spread, rank and rounding type",
+        "operationId" : "deleteCurrencyInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyInfoDelete"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reference/currencies/markets/{currencyMarketId}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves currency market details",
+        "description" : "Retrieves currency market details such as market name and local spread calculation method details",
+        "operationId" : "getCurrencyMarket",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyMarketId",
+          "in" : "path",
+          "description" : "Specifies the code by which the Currency Market can be identified.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyMarketResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyMarketResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ ],
+        "summary" : "Creates currency market details",
+        "description" : "Create currency market with details such as market name and local spread calculation method details",
+        "operationId" : "createCurrencyMarket",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyMarketId",
+          "in" : "path",
+          "description" : "Specifies the code by which the Currency Market can be identified.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyMarket"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyMarketResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyMarketResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Updates currency market details",
+        "description" : "Update currency market details such as market name and local spread calculation method details",
+        "operationId" : "updateCurrencyMarket",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyMarketId",
+          "in" : "path",
+          "description" : "Specifies the code by which the Currency Market can be identified.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyMarket"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyMarketResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyMarketResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reference/currencies/numericCodes/{numericCurrencyCode}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves ISO currency code",
+        "description" : "Retrieves ISO code of currency based on numeric currency code",
+        "operationId" : "getCurrencyFromNumericCode",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "numericCurrencyCode",
+          "in" : "path",
+          "description" : "Numeric code for the currency",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from t24 on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyFromNumericCodeResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyFromNumericCodeResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reference/currencies/{currencyId}/historicDates/{year}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves currency historic details",
+        "description" : "Retrieves effective date and version number of specified currency",
+        "operationId" : "getCurrencyModifications",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "year",
+          "in" : "path",
+          "description" : "Contains the year in a standard ISO format",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from t24 on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyModificationsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyModificationsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reference/currencies/ranks/{rank}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves ISO currency code",
+        "description" : "Retrieves ISO code of currency based on currency rank",
+        "operationId" : "getCurrencyForRank",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "rank",
+          "in" : "path",
+          "description" : "Indicates the rank of the payment order product within the group.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from t24 on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyForRankResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyForRankResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/reference/currencies/{currencyId}/profiles" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves basic currency details",
+        "description" : "Retrieves basic details like name, numeric code, interest basis and allowed decimals for the specified currency",
+        "operationId" : "getCurrencyBasicInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyBasicInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyBasicInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ ],
+        "summary" : "Creates basic currency details",
+        "description" : "Creates basic details like name, numeric code, interest basis and allowed decimals for the specified currency",
+        "operationId" : "createCurrencyBasicInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyBasicInfo"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyBasicInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyBasicInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Updates basic currency details",
+        "description" : "Updates basic details like name, numeric code, interest basis and allowed decimals for the specified currency",
+        "operationId" : "updateCurrencyBasicInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyBasicInfo"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyBasicInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyBasicInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ ],
+        "summary" : "Delete basic currency details",
+        "description" : "Delete basic details like name, numeric code, interest basis and allowed decimals for the specified currency",
+        "operationId" : "deleteCurrencyBasicInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "currencyId",
+          "in" : "path",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CurrencyBasicInfoDelete"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "CurrencyBasicInfoResponse",
+            "schema" : {
+              "$ref" : "#/definitions/CurrencyBasicInfoResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    },
+    "apiKey" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "QueryHeader" : {
+      "properties" : {
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "page_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records per page"
+        },
+        "page_start" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The record from which the response should be displayed"
+        },
+        "total_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records present"
+        },
+        "page_token" : {
+          "type" : "string",
+          "description" : "Unique id expected to get as part of response from t24 on every enquiry request"
+        }
+      }
+    },
+    "CurrenciesResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrenciesResponseBody"
+        }
+      },
+      "description" : "CurrenciesResponse"
+    },
+    "CurrenciesResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "markets" : {
+            "type" : "array",
+            "description" : "The currency market for which the currency rates applies to.",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "market" : {
+                  "type" : "string",
+                  "description" : "The currency market for which the currency rates applies to.",
+                  "maxLength" : 2
+                },
+                "buyRate" : {
+                  "type" : "string",
+                  "description" : "The exchange rate at which is currency is bought.",
+                  "maxLength" : 16
+                },
+                "sellRate" : {
+                  "type" : "string",
+                  "description" : "The exchange rate at which is currency is sold.",
+                  "maxLength" : 16
+                }
+              }
+            }
+          },
+          "currencyId" : {
+            "type" : "string",
+            "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+            "maxLength" : 3
+          },
+          "displayName" : {
+            "type" : "string",
+            "description" : "Contains the name used for display or enrichment purposes",
+            "maxLength" : 35
+          }
+        }
+      }
+    },
+    "ErrorHeader" : {
+      "properties" : {
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        }
+      }
+    },
+    "QueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/QueryErrorResponseBody"
+        }
+      },
+      "description" : "QueryErrorResponse"
+    },
+    "QueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual t24 error message "
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessQueryErrorResponseBody"
+        }
+      },
+      "description" : "BusinessQueryErrorResponse"
+    },
+    "BusinessQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual t24 error message for bad requests"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemQueryErrorResponseBody"
+        }
+      },
+      "description" : "SystemQueryErrorResponse"
+    },
+    "SystemQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual t24 error message caused by server"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "ScreenHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "CurrencyInfoResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyInfoResponseBody"
+        }
+      },
+      "description" : "CurrencyInfoResponse"
+    },
+    "CurrencyInfoResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "displayNames" : {
+          "type" : "array",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "displayName" : {
+                "type" : "string",
+                "description" : "Contains the name used for display or enrichment purposes",
+                "minLength" : 0,
+                "maxLength" : 12
+              }
+            }
+          }
+        },
+        "markets" : {
+          "type" : "array",
+          "description" : "The currency market for which the currency rates applies to.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "market" : {
+                "type" : "string",
+                "description" : "The currency market for which the currency rates applies to.",
+                "minLength" : 0,
+                "maxLength" : 16
+              },
+              "buyRate" : {
+                "type" : "string",
+                "description" : "The exchange rate at which is currency is bought.",
+                "minLength" : 0,
+                "maxLength" : 7
+              },
+              "sellRate" : {
+                "type" : "string",
+                "description" : "The exchange rate at which is currency is sold.",
+                "minLength" : 0,
+                "maxLength" : 8
+              }
+            }
+          }
+        },
+        "rateInformation" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "midRate" : {
+                "type" : "string",
+                "description" : "Indicates the Mid rate for the currency pair. System derived if Rate type is choosen as Buy/Sell or User entered if Rate type Mid.Rate",
+                "minLength" : 0,
+                "maxLength" : 10
+              },
+              "defaultSpread" : {
+                "type" : "string",
+                "description" : "Indicates the amount to be added to/ subtracted from average revaluation rate to obtain the market buy/sell rates.",
+                "minLength" : 0,
+                "maxLength" : 13
+              },
+              "uptoSmallAmount" : {
+                "type" : "string",
+                "description" : "Defines the amount below which the System will apply the default Customer and Treasury Small Spreads",
+                "minLength" : 0,
+                "maxLength" : 15
+              },
+              "treasurySmallSpread" : {
+                "type" : "string",
+                "description" : "Defines the profit margin attributable to the dealers that will be used to calculate the tresaury buy or sell rate on any small value transactions.",
+                "minLength" : 0,
+                "maxLength" : 19
+              },
+              "customerSmallSpread" : {
+                "type" : "string",
+                "description" : "Defines the default spread rates required to calculate the customer buy or sell rate from the treasury buy or sell rate on any small value transactions",
+                "minLength" : 0,
+                "maxLength" : 19
+              },
+              "negotiableAmount" : {
+                "type" : "string",
+                "description" : "Defines the amount above which the exchange rate to be used must be obtained from the dealer.",
+                "minLength" : 0,
+                "maxLength" : 16
+              },
+              "treasuryMediumSpread" : {
+                "type" : "string",
+                "description" : "Defines the profit margin attributable to the dealers that will be used to calculate the tresaury buy or sell rate on any medium value transactions",
+                "minLength" : 0,
+                "maxLength" : 20
+              },
+              "customerMediumSpread" : {
+                "type" : "string",
+                "description" : "Defines the default spread rates required to calculate the customer buy or sell rate from the treasury buy or sell rate on any medium value transactions",
+                "minLength" : 0,
+                "maxLength" : 20
+              },
+              "revalrate" : {
+                "type" : "string",
+                "description" : "Specifies the alternative market rate for the Currency",
+                "minLength" : 0,
+                "maxLength" : 9
+              },
+              "treasuryLimitAmount" : {
+                "type" : "string",
+                "description" : "Specifies the treasury dealing limits of a currency",
+                "minLength" : 0,
+                "maxLength" : 19
+              }
+            }
+          }
+        },
+        "equivalentCurrencies" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "equivalentCurrencyId" : {
+                "type" : "string",
+                "description" : "Specifies an equivalent currency that can be used instead of the actual currency",
+                "minLength" : 0,
+                "maxLength" : 20
+              }
+            }
+          }
+        },
+        "rank" : {
+          "type" : "string",
+          "description" : "Indicates the rank of the payment order product within the group.",
+          "minLength" : 0,
+          "maxLength" : 12
+        },
+        "numericCurrencyCode" : {
+          "type" : "string",
+          "description" : "Numeric code for the currency",
+          "minLength" : 0,
+          "maxLength" : 19
+        },
+        "numberofDecimal" : {
+          "type" : "string",
+          "description" : "Indicates the applicable number of decimal positions for amount calculations and display purposes",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "quotationCode" : {
+          "type" : "string",
+          "description" : "Identifies the method of quotation of the exchange rate for the currency.",
+          "minLength" : 0,
+          "maxLength" : 21
+        },
+        "quotationPips" : {
+          "type" : "string",
+          "description" : "Identifies the decimal displacement of percentage in points for a currency.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "noticeDay" : {
+          "type" : "string",
+          "description" : "Indicates the number of days prior to rollover or renewal date on which the notice to be sent.",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "nostroProjectionDay" : {
+          "type" : "string",
+          "description" : "Defines the number of working days forward, from the Run date, to commence detailed Nostro reporting.",
+          "minLength" : 0,
+          "maxLength" : 20
+        },
+        "interestDayBasis" : {
+          "type" : "string",
+          "description" : "Defines the method of calculation for accrued interest on a Security",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "allowedVariance" : {
+          "type" : "string",
+          "description" : "Defines the percentage variance allowed on the middle rate",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "fixedRateDate" : {
+          "type" : "string",
+          "description" : "Indicates the date of the rate fixing",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "minAmount" : {
+          "type" : "string",
+          "description" : "Contains the minimum principal amount defined for the deposit contract",
+          "minLength" : 0,
+          "maxLength" : 14
+        },
+        "cashOnlyRounding" : {
+          "type" : "string",
+          "description" : "Specifies whether rounding of amounts in this currency is to take place only for cash transactions.",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "minimumRoundType" : {
+          "type" : "string",
+          "description" : "Indicates the type of rounding to be applied for non-cash transactions of a currency.",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "cashRoundType" : {
+          "type" : "string",
+          "description" : "Indicates the type of rounding to be applied for cash transactions of a currency.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "preciousMetal" : {
+          "type" : "string",
+          "description" : "Identifies if the currency is a precious metal or not.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "countryCode" : {
+          "type" : "string",
+          "description" : "ISO 3166-1-alpha-2 or alpha-3 country code of financial institution",
+          "minLength" : 0,
+          "maxLength" : 11
+        },
+        "fixedRate" : {
+          "type" : "string",
+          "description" : "Numeric value for the interest rate entered manually.",
+          "minLength" : 0,
+          "maxLength" : 9
+        },
+        "fixedCurrencyId" : {
+          "type" : "string",
+          "description" : "Defines whether this currency is fixed to another currency",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "startDate" : {
+          "type" : "string",
+          "description" : "Contains the date on which the transaction or payment gets initiated.",
+          "minLength" : 0,
+          "maxLength" : 14
+        },
+        "baseCurrencyRank" : {
+          "type" : "string",
+          "description" : "Indicates the base currency used for  the currency conversion if primary conversions are not specified",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "availableDate" : {
+          "type" : "string",
+          "description" : "Specifies the date after which the contract or amount is available for use.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "blockedDateTime" : {
+          "type" : "string",
+          "description" : "Date on which the account has been blocked.",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "cutOffTime" : {
+          "type" : "string",
+          "description" : "The Cut off time when all executions for the day are consolidated to create a trade",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "clsCurrencyId" : {
+          "type" : "string",
+          "description" : "identifies the Continuous Linked Settlement (CLS) currency used to eliminate the risk of foreign exchange rate settlement",
+          "minLength" : 0,
+          "maxLength" : 13
+        }
+      }
+    },
+    "overrideBody" : {
+      "properties" : {
+        "overrideDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "description" : "The identifier of the override."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The actual override message."
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The code related to override message."
+              },
+              "options" : {
+                "type" : "array",
+                "description" : "The usable options for the override.",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "The type of the override."
+              }
+            }
+          }
+        }
+      }
+    },
+    "ScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/ScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "ScreenErrorResponse"
+    },
+    "ScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message "
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "BusinessScreenErrorResponse"
+    },
+    "BusinessScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message for bad requests"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "SystemScreenErrorResponse"
+    },
+    "SystemScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message caused by server"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "CurrencyMarketResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyMarketResponseBody"
+        }
+      },
+      "description" : "CurrencyMarketResponse"
+    },
+    "CurrencyMarketResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "currencyMarketNames" : {
+          "type" : "array",
+          "description" : "Specifies the name displayed for the currency market",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "currencyMarketName" : {
+                "type" : "string",
+                "description" : "Specifies the name displayed for the currency market",
+                "minLength" : 0,
+                "maxLength" : 18
+              }
+            }
+          }
+        },
+        "spreadCalcuationRoutine" : {
+          "type" : "string",
+          "description" : "Specifies the name of the routine to be used for customised spread calculation.",
+          "minLength" : 0,
+          "maxLength" : 23
+        }
+      }
+    },
+    "CurrencyFromNumericCodeResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyFromNumericCodeResponseBody"
+        }
+      },
+      "description" : "CurrencyFromNumericCodeResponse"
+    },
+    "CurrencyFromNumericCodeResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "currencyId" : {
+            "type" : "string",
+            "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+            "maxLength" : 16
+          }
+        }
+      }
+    },
+    "CurrencyModificationsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyModificationsResponseBody"
+        }
+      },
+      "description" : "CurrencyModificationsResponse"
+    },
+    "CurrencyModificationsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "currencyHistory" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "modifiedDate" : {
+                  "type" : "string",
+                  "format" : "date",
+                  "description" : "Date on which the Bundle has been modified."
+                },
+                "versionNumber" : {
+                  "type" : "string",
+                  "description" : "Current number of the record",
+                  "maxLength" : 40
+                }
+              }
+            }
+          },
+          "currencyId" : {
+            "type" : "string",
+            "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency."
+          }
+        }
+      }
+    },
+    "CurrencyForRankResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyForRankResponseBody"
+        }
+      },
+      "description" : "CurrencyForRankResponse"
+    },
+    "CurrencyForRankResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "currencyId" : {
+            "type" : "string",
+            "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+            "maxLength" : 16
+          }
+        }
+      }
+    },
+    "CurrencyBasicInfoResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyBasicInfoResponseBody"
+        }
+      },
+      "description" : "CurrencyBasicInfoResponse"
+    },
+    "CurrencyBasicInfoResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "displayNames" : {
+          "type" : "array",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "displayName" : {
+                "type" : "string",
+                "description" : "Contains the name used for display or enrichment purposes",
+                "minLength" : 0,
+                "maxLength" : 11
+              }
+            }
+          }
+        },
+        "numberofDecimal" : {
+          "type" : "string",
+          "description" : "Indicates the applicable number of decimal positions for amount calculations and display purposes",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "numericCurrencyCode" : {
+          "type" : "string",
+          "description" : "Numeric code for the currency",
+          "minLength" : 0,
+          "maxLength" : 19
+        },
+        "baseCurrencyRank" : {
+          "type" : "string",
+          "description" : "Indicates the base currency used for  the currency conversion if primary conversions are not specified",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "interestDayBasis" : {
+          "type" : "string",
+          "description" : "Defines the method of calculation for accrued interest on a Security",
+          "minLength" : 0,
+          "maxLength" : 16
+        }
+      }
+    },
+    "PayloadHeader" : {
+      "properties" : {
+        "override" : {
+          "type" : "object",
+          "properties" : {
+            "overrideDetails" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "description" : "The identifier of the override."
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : "The actual override message."
+                  },
+                  "code" : {
+                    "type" : "string",
+                    "description" : "The code related to override message."
+                  },
+                  "responseCode" : {
+                    "type" : "string",
+                    "description" : "The user input to accept/reject the override."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            }
+          }
+        }
+      }
+    },
+    "CurrencyInfo" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyInfoBody"
+        }
+      },
+      "description" : "CurrencyInfo"
+    },
+    "CurrencyInfoBody" : {
+      "type" : "object",
+      "properties" : {
+        "displayNames" : {
+          "type" : "array",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "displayName" : {
+                "type" : "string",
+                "description" : "Contains the name used for display or enrichment purposes",
+                "minLength" : 0,
+                "maxLength" : 12
+              }
+            }
+          }
+        },
+        "markets" : {
+          "type" : "array",
+          "description" : "The currency market for which the currency rates applies to.",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "market" : {
+                "type" : "string",
+                "description" : "The currency market for which the currency rates applies to.",
+                "minLength" : 0,
+                "maxLength" : 16
+              },
+              "buyRate" : {
+                "type" : "string",
+                "description" : "The exchange rate at which is currency is bought.",
+                "minLength" : 0,
+                "maxLength" : 7
+              },
+              "sellRate" : {
+                "type" : "string",
+                "description" : "The exchange rate at which is currency is sold.",
+                "minLength" : 0,
+                "maxLength" : 8
+              }
+            }
+          }
+        },
+        "rateInformation" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "midRate" : {
+                "type" : "string",
+                "description" : "Indicates the Mid rate for the currency pair. System derived if Rate type is choosen as Buy/Sell or User entered if Rate type Mid.Rate",
+                "minLength" : 0,
+                "maxLength" : 10
+              },
+              "defaultSpread" : {
+                "type" : "string",
+                "description" : "Indicates the amount to be added to/ subtracted from average revaluation rate to obtain the market buy/sell rates.",
+                "minLength" : 0,
+                "maxLength" : 13
+              },
+              "uptoSmallAmount" : {
+                "type" : "string",
+                "description" : "Defines the amount below which the system will apply the default customer and treasury small spreads",
+                "minLength" : 0,
+                "maxLength" : 15
+              },
+              "treasurySmallSpread" : {
+                "type" : "string",
+                "description" : "Defines the profit margin attributable to the dealers that will be used to calculate the tresaury buy or sell rate on any small value transactions",
+                "minLength" : 0,
+                "maxLength" : 19
+              },
+              "customerSmallSpread" : {
+                "type" : "string",
+                "description" : "Defines the default spread rates required to calculate the customer buy or sell rate from the treasury buy or sell rate on any small value transactions",
+                "minLength" : 0,
+                "maxLength" : 19
+              },
+              "negotiableAmount" : {
+                "type" : "string",
+                "description" : "Defines the amount above which the exchange rate to be used must be obtained from the dealer.",
+                "minLength" : 0,
+                "maxLength" : 16
+              },
+              "treasuryMediumSpread" : {
+                "type" : "string",
+                "description" : "Defines the profit margin attributable to the dealers that will be used to calculate the tresaury buy or sell rate on any medium value transactions",
+                "minLength" : 0,
+                "maxLength" : 20
+              },
+              "customerMediumSpread" : {
+                "type" : "string",
+                "description" : "Defines the default spread rates required to calculate the customer buy or sell rate from the treasury buy or sell rate on any medium value transactions",
+                "minLength" : 0,
+                "maxLength" : 20
+              },
+              "revalrate" : {
+                "type" : "string",
+                "description" : "Specifies the alternative market rate for the Currency",
+                "minLength" : 0,
+                "maxLength" : 9
+              },
+              "treasuryLimitAmount" : {
+                "type" : "string",
+                "description" : "Specifies the treasury dealing limits of a currency",
+                "minLength" : 0,
+                "maxLength" : 19
+              }
+            }
+          }
+        },
+        "equivalentCurrencies" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "equivalentCurrencyId" : {
+                "type" : "string",
+                "description" : "Specifies an equivalent currency that can be used instead of the actual currency",
+                "minLength" : 0,
+                "maxLength" : 20
+              }
+            }
+          }
+        },
+        "rank" : {
+          "type" : "string",
+          "description" : "Indicates the rank of the payment order product within the group.",
+          "minLength" : 0,
+          "maxLength" : 12
+        },
+        "numericCurrencyCode" : {
+          "type" : "string",
+          "description" : "Numeric code for the currency",
+          "minLength" : 0,
+          "maxLength" : 19
+        },
+        "numberofDecimal" : {
+          "type" : "string",
+          "description" : "Indicates the applicable number of decimal positions for amount calculations and display purposes",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "quotationCode" : {
+          "type" : "string",
+          "description" : "Identifies the method of quotation of the exchange rate for the currency.",
+          "minLength" : 0,
+          "maxLength" : 21
+        },
+        "quotationPips" : {
+          "type" : "string",
+          "description" : "Identifies the decimal displacement of percentage in points for a currency.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "noticeDay" : {
+          "type" : "string",
+          "description" : "Indicates the number of days prior to rollover or renewal date on which the notice to be sent.",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "nostroProjectionDay" : {
+          "type" : "string",
+          "description" : "Defines the number of working days forward, from the run date, to commence detailed Nostro reporting.",
+          "minLength" : 0,
+          "maxLength" : 20
+        },
+        "interestDayBasis" : {
+          "type" : "string",
+          "description" : "Defines the method of calculation for accrued interest on a Security",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "allowedVariance" : {
+          "type" : "string",
+          "description" : "Defines the percentage variance allowed on the middle rate",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "fixedRateDate" : {
+          "type" : "string",
+          "description" : "Indicates the date of the rate fixing",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "minAmount" : {
+          "type" : "string",
+          "description" : "Contains the minimum principal amount defined for the deposit contract",
+          "minLength" : 0,
+          "maxLength" : 14
+        },
+        "cashOnlyRounding" : {
+          "type" : "string",
+          "description" : "Specifies whether rounding of amounts in this currency is to take place only for cash transactions.",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "minimumRoundType" : {
+          "type" : "string",
+          "description" : "Indicates the type of rounding to be applied for non-cash transactions of a currency.",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "cashRoundType" : {
+          "type" : "string",
+          "description" : "Indicates the type of rounding to be applied for cash transactions of a currency.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "preciousMetal" : {
+          "type" : "string",
+          "description" : "Identifies if the currency is a precious metal or not.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "countryCode" : {
+          "type" : "string",
+          "description" : "ISO Country code, IBAN number will be generated based on the structure of this country.",
+          "minLength" : 0,
+          "maxLength" : 11
+        },
+        "fixedRate" : {
+          "type" : "string",
+          "description" : "Numeric value for the interest rate entered manually.",
+          "minLength" : 0,
+          "maxLength" : 9
+        },
+        "fixedCurrencyId" : {
+          "type" : "string",
+          "description" : "Defines whether this currency is fixed to another currency",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "startDate" : {
+          "type" : "string",
+          "description" : "Beginning Date of IPO Subscription",
+          "minLength" : 0,
+          "maxLength" : 14
+        },
+        "baseCurrencyRank" : {
+          "type" : "string",
+          "description" : "Indicates the base currency used for  the currency conversion if primary conversions are not specified",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "availableDate" : {
+          "type" : "string",
+          "description" : "Specifies the date after which the contract or amount is available for use.",
+          "minLength" : 0,
+          "maxLength" : 13
+        },
+        "blockedDateTime" : {
+          "type" : "string",
+          "description" : "Date on which the account has been blocked.",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "cutOffTime" : {
+          "type" : "string",
+          "description" : "The Cut off time when all executions for the day are consolidated to create a trade",
+          "minLength" : 0,
+          "maxLength" : 10
+        },
+        "clsCurrencyId" : {
+          "type" : "string",
+          "description" : "identifies the Continuous Linked Settlement (CLS) currency used to eliminate the risk of foreign exchange rate settlement",
+          "minLength" : 0,
+          "maxLength" : 13
+        }
+      }
+    },
+    "CurrencyInfoDelete" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        }
+      },
+      "description" : "CurrencyInfoDelete"
+    },
+    "CurrencyMarket" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyMarketBody"
+        }
+      },
+      "description" : "CurrencyMarket"
+    },
+    "CurrencyMarketBody" : {
+      "type" : "object",
+      "properties" : {
+        "currencyMarketNames" : {
+          "type" : "array",
+          "description" : "Specifies the name displayed for the currency market",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "currencyMarketName" : {
+                "type" : "string",
+                "description" : "Specifies the name displayed for the currency market",
+                "minLength" : 0,
+                "maxLength" : 18
+              }
+            }
+          }
+        },
+        "spreadCalcuationRoutine" : {
+          "type" : "string",
+          "description" : "Specifies the name of the routine to be used for customised spread calculation.",
+          "minLength" : 0,
+          "maxLength" : 23
+        }
+      }
+    },
+    "CurrencyBasicInfo" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/CurrencyBasicInfoBody"
+        }
+      },
+      "description" : "CurrencyBasicInfo"
+    },
+    "CurrencyBasicInfoBody" : {
+      "type" : "object",
+      "properties" : {
+        "displayNames" : {
+          "type" : "array",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "displayName" : {
+                "type" : "string",
+                "description" : "Contains the name used for display or enrichment purposes",
+                "minLength" : 0,
+                "maxLength" : 11
+              }
+            }
+          }
+        },
+        "numberofDecimal" : {
+          "type" : "string",
+          "description" : "Indicates the applicable number of decimal positions for amount calculations and display purposes",
+          "minLength" : 0,
+          "maxLength" : 15
+        },
+        "numericCurrencyCode" : {
+          "type" : "string",
+          "description" : "Numeric code for the currency",
+          "minLength" : 0,
+          "maxLength" : 19
+        },
+        "baseCurrencyRank" : {
+          "type" : "string",
+          "description" : "Indicates the base currency used for  the currency conversion if primary conversions are not specified",
+          "minLength" : 0,
+          "maxLength" : 16
+        },
+        "interestDayBasis" : {
+          "type" : "string",
+          "description" : "Defines the method of calculation for accrued interest on a Security",
+          "minLength" : 0,
+          "maxLength" : 16
+        }
+      }
+    },
+    "CurrencyBasicInfoDelete" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        }
+      },
+      "description" : "CurrencyBasicInfoDelete"
+    }
+  }
+}

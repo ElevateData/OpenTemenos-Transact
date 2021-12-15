@@ -1,0 +1,1125 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Allows management of Forex utilisations for external settlement contracts ",
+    "version" : "v1.1.0",
+    "title" : "Management of Forex Utilisations"
+  },
+  "host" : "api.temenos.com",
+  "basePath" : "/api/v1.1.0/",
+  "tags" : [ {
+    "name" : "TREASURY"
+  } ],
+  "schemes" : [ "https" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  }, {
+    "apiKey" : [ ]
+  } ],
+  "paths" : {
+    "/holdings/treasury/forex/utilisations/{utilisationId}" : {
+      "get" : {
+        "tags" : [ "TREASURY" ],
+        "summary" : "Retrieves the forex contracts for the provided reference",
+        "description" : "View Forex contracts which are utilised",
+        "operationId" : "getUtilisations",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "utilisationId",
+          "in" : "path",
+          "description" : "Identifies the unique identifier of the transaction or contract which will be utilised.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "UtilisationsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/UtilisationsResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/treasury/forex/utilisationsInitiations/{utilisationId}" : {
+      "put" : {
+        "tags" : [ "TREASURY" ],
+        "summary" : "Initiation of the Forex contract which will be utilised for external settlement",
+        "description" : "Amend the Forex to add utilisations",
+        "operationId" : "addUtilisations",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "utilisationId",
+          "in" : "path",
+          "description" : "Identifies the unique identifier of the transaction or contract which will be utilised.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Utilisations"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "UtilisationsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/UtilisationsResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/treasury/forex/utilisationsApprovals/{utilisationId}" : {
+      "put" : {
+        "tags" : [ "TREASURY" ],
+        "summary" : "Authorization of the Forex contract which has been utilised for external settlement",
+        "description" : "Authorises the utilisation added on Forex contracts",
+        "operationId" : "approveUtilisations",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "utilisationId",
+          "in" : "path",
+          "description" : "Identifies the unique identifier of the transaction or contract which will be utilised.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "UtilisationsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/UtilisationsResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/treasury/forex/utilisations/rates" : {
+      "get" : {
+        "tags" : [ "TREASURY" ],
+        "summary" : "Retrieves the currency exchange rates from the given forex contract that will be used by the transaction processing application for the conversion.",
+        "description" : "Retrieves the exchange rate to be applied for foreign currency settlement from the Transaction Processing applications like Payments, Loans, Trade finance etc. ",
+        "operationId" : "getFxUtilisationRates",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "utilisationId",
+          "in" : "query",
+          "description" : "Identifies the unique identifier of the transaction or contract which will be utilised.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "counterparty",
+          "in" : "query",
+          "description" : "The counterparty ID  for the  deal.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "utilisationCurrency",
+          "in" : "query",
+          "description" : "Identifies the currency in which the amount is being utilised.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "utilisationAmount",
+          "in" : "query",
+          "description" : "Identifies the utilized amount of the Forex contract.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "executionDate",
+          "in" : "query",
+          "description" : "Date on which the transaction or payment gets processed, i.e. the processing date of the transaction.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "FxUtilisationRatesResponse",
+            "schema" : {
+              "$ref" : "#/definitions/FxUtilisationRatesResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    },
+    "apiKey" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "ScreenHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "UtilisationsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/UtilisationsResponseBody"
+        }
+      },
+      "description" : "UtilisationsResponse"
+    },
+    "UtilisationsResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "utilisations" : {
+          "type" : "array",
+          "description" : "Retrieves the forex contracts which are utilized",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "utilisationAmountBuy" : {
+                "type" : "string",
+                "description" : "Contains the utilized buy amount of the Forex contract",
+                "minLength" : 0,
+                "maxLength" : 20
+              },
+              "utilisationAmountSell" : {
+                "type" : "string",
+                "description" : "Contains the utilized sell amount of the Forex contract",
+                "minLength" : 0,
+                "maxLength" : 21
+              },
+              "utilisationDateBuy" : {
+                "type" : "string",
+                "description" : "Contains the buy date when the utilisation has been done on the Forex deal",
+                "minLength" : 0,
+                "maxLength" : 18
+              },
+              "utilisationDateSell" : {
+                "type" : "string",
+                "description" : "",
+                "minLength" : 0,
+                "maxLength" : 19
+              },
+              "utilisationReference" : {
+                "type" : "string",
+                "description" : "Contains the reference to the contracts which have utilized the Forex.",
+                "minLength" : 0,
+                "maxLength" : 20
+              }
+            }
+          }
+        },
+        "customerName" : {
+          "type" : "string",
+          "description" : "Name of the customer",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valueDateBuy" : {
+          "type" : "string",
+          "description" : "Settlement date for buy side amount",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valueDateSell" : {
+          "type" : "string",
+          "description" : "Date on which the sold currency is settled.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "optionDate" : {
+          "type" : "string",
+          "description" : "Contains the date post which an options contract can be utilized",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "projectedOutstandingAmount" : {
+          "type" : "string",
+          "description" : "Contains the outstanding amount of the utilized contracts.",
+          "minLength" : 0,
+          "maxLength" : 26
+        },
+        "buyCurrency" : {
+          "type" : "string",
+          "description" : "ISO Currency code for the bought currency.  ",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "sellCurrency" : {
+          "type" : "string",
+          "description" : "ISO Currency code for the sold currency.  ",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "baseCurrency" : {
+          "type" : "string",
+          "description" : "Contains the currency of the arrangement which linked to the package or bundle",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "optionCurrency" : {
+          "type" : "string",
+          "description" : "The currency of the option",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "buyAmount" : {
+          "type" : "string",
+          "description" : "Amount bought in the FX deal.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "sellAmount" : {
+          "type" : "string",
+          "description" : "Amount sold in the FX deal.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "spotRate" : {
+          "type" : "string",
+          "description" : "Exchange rate applicable for spot trades.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "forwardRate" : {
+          "type" : "string",
+          "description" : "FX rate applicable for forward period contracts. ",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "treasuryRate" : {
+          "type" : "string",
+          "description" : "The Treasury rate for the conversion between payment currency and the ordering currency",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "externalDealReference" : {
+          "type" : "string",
+          "description" : "Contains the external deal reference number",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealType" : {
+          "type" : "string",
+          "description" : "Foreign Exchange deal type. Allowed values: - SP(spot) - FW(forward) - SW(Swap)",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "transactionType" : {
+          "type" : "string",
+          "description" : "Identifies the transaction type applicable to the transaction being processed, i.e. outward or inward payment. For example: ACPX, OTPX etc.",
+          "minLength" : 0,
+          "maxLength" : 15
+        }
+      }
+    },
+    "ErrorHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "overrideBody" : {
+      "properties" : {
+        "overrideDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "description" : "The identifier of the override."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The actual override message."
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The code related to override message."
+              },
+              "options" : {
+                "type" : "array",
+                "description" : "The usable options for the override.",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "The type of the override."
+              }
+            }
+          }
+        }
+      }
+    },
+    "ScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/ScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "ScreenErrorResponse"
+    },
+    "ScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message "
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "BusinessScreenErrorResponse"
+    },
+    "BusinessScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message for bad requests"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "SystemScreenErrorResponse"
+    },
+    "SystemScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message caused by server"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "PayloadHeader" : {
+      "properties" : {
+        "override" : {
+          "type" : "object",
+          "properties" : {
+            "overrideDetails" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "description" : "The identifier of the override."
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : "The actual override message."
+                  },
+                  "code" : {
+                    "type" : "string",
+                    "description" : "The code related to override message."
+                  },
+                  "responseCode" : {
+                    "type" : "string",
+                    "description" : "The user input to accept/reject the override."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            }
+          }
+        }
+      }
+    },
+    "Utilisations" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/UtilisationsBody"
+        }
+      },
+      "description" : "Utilisations"
+    },
+    "UtilisationsBody" : {
+      "type" : "object",
+      "properties" : {
+        "utilisations" : {
+          "type" : "array",
+          "description" : "Retrieves the forex contracts which are utilized",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "utilisationAmountBuy" : {
+                "type" : "string",
+                "description" : "Contains the utilized buy amount of the Forex contract",
+                "minLength" : 0,
+                "maxLength" : 20
+              },
+              "utilisationAmountSell" : {
+                "type" : "string",
+                "description" : "Contains the utilized sell amount of the Forex contract",
+                "minLength" : 0,
+                "maxLength" : 21
+              },
+              "utilisationDateBuy" : {
+                "type" : "string",
+                "description" : "Contains the buy date when the utilisation has been done on the Forex deal",
+                "minLength" : 0,
+                "maxLength" : 18
+              },
+              "utilisationDateSell" : {
+                "type" : "string",
+                "description" : "",
+                "minLength" : 0,
+                "maxLength" : 19
+              },
+              "utilisationReference" : {
+                "type" : "string",
+                "description" : "Contains the reference to the contracts which have utilized the Forex.",
+                "minLength" : 0,
+                "maxLength" : 20
+              }
+            }
+          }
+        },
+        "customerName" : {
+          "type" : "string",
+          "description" : "Name of the customer",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valueDateBuy" : {
+          "type" : "string",
+          "description" : "Settlement date for buy side amount",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valueDateSell" : {
+          "type" : "string",
+          "description" : "Date on which the sold currency is settled.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "optionDate" : {
+          "type" : "string",
+          "description" : "Contains the date post which an options contract can be utilized",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "projectedOutstandingAmount" : {
+          "type" : "string",
+          "description" : "Contains the outstanding amount of the utilized contracts.",
+          "minLength" : 0,
+          "maxLength" : 26
+        },
+        "buyCurrency" : {
+          "type" : "string",
+          "description" : "ISO Currency code for the bought currency.  ",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "sellCurrency" : {
+          "type" : "string",
+          "description" : "ISO Currency code for the sold currency.  ",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "baseCurrency" : {
+          "type" : "string",
+          "description" : "Contains the currency of the arrangement which linked to the package or bundle",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "optionCurrency" : {
+          "type" : "string",
+          "description" : "The currency of the option",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "buyAmount" : {
+          "type" : "string",
+          "description" : "Amount bought in the FX deal.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "sellAmount" : {
+          "type" : "string",
+          "description" : "Amount sold in the FX deal.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "spotRate" : {
+          "type" : "string",
+          "description" : "Exchange rate applicable for spot trades.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "forwardRate" : {
+          "type" : "string",
+          "description" : "FX rate applicable for forward period contracts. ",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "treasuryRate" : {
+          "type" : "string",
+          "description" : "The Treasury rate for the conversion between payment currency and the ordering currency",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "externalDealReference" : {
+          "type" : "string",
+          "description" : "Contains the external deal reference number",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealType" : {
+          "type" : "string",
+          "description" : "Foreign Exchange deal type. Allowed values: - SP(spot) - FW(forward) - SW(Swap)",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "transactionType" : {
+          "type" : "string",
+          "description" : "Identifies the transaction type applicable to the transaction being processed, i.e. outward or inward payment. For example: ACPX, OTPX etc.",
+          "minLength" : 0,
+          "maxLength" : 15
+        }
+      }
+    },
+    "QueryHeader" : {
+      "properties" : {
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "page_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records per page"
+        },
+        "page_start" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The record from which the response should be displayed"
+        },
+        "total_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records present"
+        },
+        "page_token" : {
+          "type" : "string",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request"
+        }
+      }
+    },
+    "FxUtilisationRatesResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/FxUtilisationRatesResponseBody"
+        }
+      },
+      "description" : "FxUtilisationRatesResponse"
+    },
+    "FxUtilisationRatesResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "rate" : {
+            "type" : "string",
+            "description" : "The rate applied"
+          },
+          "errorCode" : {
+            "type" : "string",
+            "description" : "Specifies the error code expected in the system which indicates the resrtiction reason for blocking the  transaction completely"
+          }
+        }
+      }
+    },
+    "QueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/QueryErrorResponseBody"
+        }
+      },
+      "description" : "QueryErrorResponse"
+    },
+    "QueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message "
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessQueryErrorResponseBody"
+        }
+      },
+      "description" : "BusinessQueryErrorResponse"
+    },
+    "BusinessQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message for bad requests"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemQueryErrorResponseBody"
+        }
+      },
+      "description" : "SystemQueryErrorResponse"
+    },
+    "SystemQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message caused by server"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    }
+  }
+}

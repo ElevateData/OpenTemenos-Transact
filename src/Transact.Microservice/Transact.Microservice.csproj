@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <LangVersion>10.0</LangVersion>
+	  <RootNamespace>OpenTemenos.Transacts.Microservice</RootNamespace>
+  </PropertyGroup>
+	<ItemGroup>
+		<OpenApiReference Include="..\..\OpenApis\transact\microservices\CallbackRegistry.yaml" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/microservices/CallbackRegistry.yaml</SourceUri>
+			<Options>/ContractsOutput:CallbackRegistryService.cs /ContractsNamespace:OpenTemenos.Transacts.Microservice.CallbackRegistries /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CallbackRegistryService.cs</OutputPath>
+			<ClassName>CallbackRegistryService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\microservices\Entitlement.yaml" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/microservices/Entitlement.yaml</SourceUri>
+			<Options>/ContractsOutput:EntitlementService.cs /ContractsNamespace:OpenTemenos.Transacts.Microservice.Entitlements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>EntitlementService.cs</OutputPath>
+			<ClassName>EntitlementService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\microservices\EventStore.yaml" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/microservices/EventStore.yaml</SourceUri>
+			<Options>/ContractsOutput:EventStoreService.cs /ContractsNamespace:OpenTemenos.Transacts.Microservice.EventStores /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>EventStoreService.cs</OutputPath>
+			<ClassName>EventStoreService</ClassName>
+		</OpenApiReference>
+-->
+		<OpenApiReference Include="..\..\OpenApis\transact\microservices\GenericConfig.yaml" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/microservices/GenericConfig.yaml</SourceUri>
+			<Options>/ContractsOutput:GenericConfigService.cs /ContractsNamespace:OpenTemenos.Transacts.Microservice.GenericConfigs /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>GenericConfigService.cs</OutputPath>
+			<ClassName>GenericConfigService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\microservices\Metering.yaml" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/microservices/Metering.yaml</SourceUri>
+			<Options>/ContractsOutput:MeteringService.cs /ContractsNamespace:OpenTemenos.Transacts.Microservice.Meterings /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>MeteringService.cs</OutputPath>
+			<ClassName>MeteringService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\microservices\ServiceOrchestrator.yaml" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/microservices/ServiceOrchestrator.yaml</SourceUri>
+			<Options>/ContractsOutput:ServiceOrchestratorService.cs /ContractsNamespace:OpenTemenos.Transacts.Microservice.ServiceOrchestrators /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ServiceOrchestratorService.cs</OutputPath>
+			<ClassName>ServiceOrchestratorService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\microservices\Traceability.yaml" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/microservices/Traceability.yaml</SourceUri>
+			<Options>/ContractsOutput:TraceabilityService.cs /ContractsNamespace:OpenTemenos.Transacts.Microservice.Traceabilities /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>TraceabilityService.cs</OutputPath>
+			<ClassName>TraceabilityService</ClassName>
+		</OpenApiReference>
+
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="6.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="NSwag.ApiDescription.Client" Version="13.15.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<RootNamespace>OpenTemenos.Transacts</RootNamespace>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<SignAssembly>False</SignAssembly>
+		<VersionPrefix>0.1.1-beta</VersionPrefix>
+		<Company>Elevate Data</Company>
+		<Authors>Elevate Data</Authors>
+		<Product>ElevateData.OpenTemenos.Transact.P</Product>
+		<PackageId>ElevateData.OpenTemenos.Transact</PackageId>
+		<Title>OpenTemenos: Transact</Title>
+		<Description>A http client/proxy for Temenos Transact APIs managed by Elevate Data built off the OpenAPI specs provided by Temenos.</Description>
+		<RepositoryUrl>https://github.com/ElevateData/OpenTemenos-Transact</RepositoryUrl>
+		<PackageTags>OpenAPI;Temenos;Transact;ElevateData;Elevate Data;finance;financial;core banking;banking</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Transact.Enterprise\Transact.Enterprise.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Holding\Transact.Holding.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Loans\Transact.Loan.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Meta\Transact.Meta.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Microservice\Transact.Microservice.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Order\Transact.Order.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Party\Transact.Party.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Product\Transact.Product.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.Reference\Transact.Reference.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Transact.System\Transact.System.csproj" PrivateAssets="All" />
+		<ProjectReference Include="..\Shared\Shared.csproj" PrivateAssets="All" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+	</PropertyGroup>
+
+	<Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+		<ItemGroup>
+			<!-- Filter out unnecessary files -->
+			<_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
+		</ItemGroup>
+
+		<!-- Print batches for debug purposes -->
+		<Message Text="Batch for .nupkg: ReferenceCopyLocalPaths = @(_ReferenceCopyLocalPaths), ReferenceCopyLocalPaths.DestinationSubDirectory = %(_ReferenceCopyLocalPaths.DestinationSubDirectory) Filename = %(_ReferenceCopyLocalPaths.Filename) Extension = %(_ReferenceCopyLocalPaths.Extension)" Importance="High" Condition="'@(_ReferenceCopyLocalPaths)' != ''" />
+
+		<ItemGroup>
+			<!-- Add file to package with consideration of sub folder. If empty, the root folder is chosen. -->
+			<BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)" />
+		</ItemGroup>
+	</Target>
+
+</Project>

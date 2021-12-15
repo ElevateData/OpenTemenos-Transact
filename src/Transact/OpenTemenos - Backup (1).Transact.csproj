@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	  <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Transact.Enterprise\OpenTemenos.Transacts.Enterprise.csproj" />
+    <ProjectReference Include="..\Transact.Holding\OpenTemenos.Transacts.Holding.csproj" />
+    <ProjectReference Include="..\Transact.Loans\OpenTemenos.Transacts.Loan.csproj" />
+    <ProjectReference Include="..\Transact.Meta\OpenTemenos.Transacts.Meta.csproj" />
+    <ProjectReference Include="..\Transact.Microservice\Transact.Microservice.csproj" />
+    <ProjectReference Include="..\Transact.Order\Transact.Order.csproj" />
+    <ProjectReference Include="..\Transact.Party\Transact.Party.csproj" />
+    <ProjectReference Include="..\Transact.Product\Transact.Product.csproj" />
+    <ProjectReference Include="..\Transact.Reference\Transact.Reference.csproj" />
+    <ProjectReference Include="..\Transact.System\Transact.System.csproj" />
+  </ItemGroup>
+
+</Project>

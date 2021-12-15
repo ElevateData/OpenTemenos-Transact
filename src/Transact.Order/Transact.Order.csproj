@@ -1,0 +1,147 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<RootNamespace>OpenTemenos.Transacts.Order</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-accountTransfers-v1.0.1-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-accountTransfers-v1.0.1-swagger.json</SourceUri>
+			<Options>/ContractsOutput:AccountTransferService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.AccountTransfers /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>AccountTransferService.cs</OutputPath>
+			<ClassName>AccountTransferService</ClassName>
+		</OpenApiReference>
+		<!--
+	  <OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-bulkpayments-service-v3.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+		  <SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-bulkpayments-service-v3.0.0-swagger.json</SourceUri>
+		  <Options>/ContractsOutput:BulkPaymentService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.BulkPayments /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+		  <OutputPath>BulkPaymentService.cs</OutputPath>
+		  <ClassName>BulkPaymentService</ClassName>
+	  </OpenApiReference>
+-->
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-cashmanagement-bundles-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-cashmanagement-bundles-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CashManagementBundleService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.CashManagementBundles /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CashManagementBundleService.cs</OutputPath>
+			<ClassName>CashManagementBundleService</ClassName>
+		</OpenApiReference>
+-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-cashmanagement-sweep-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-cashmanagement-sweep-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CashManagementSweepService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.CashManagementSweeps /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CashManagementSweepService.cs</OutputPath>
+			<ClassName>CashManagementSweepService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-creditorReferences-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-creditorReferences-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CreditorReferenceService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.CreditorReferences /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CreditorReferenceService.cs</OutputPath>
+			<ClassName>CreditorReferenceService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-derivativeOrders-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-derivativeOrders-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:DerivativeOrderService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.DerivativeOrders /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>DerivativeOrderService.cs</OutputPath>
+			<ClassName>DerivativeOrderService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-fiduciaryOrders-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-fiduciaryOrders-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:FiduciaryOrderService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.FiduciaryOrders /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>FiduciaryOrderService.cs</OutputPath>
+			<ClassName>FiduciaryOrderService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-forexCustomerOrders-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-forexCustomerOrders-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:ForexCustomerOrderService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.ForexCustomerOrders /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ForexCustomerOrderService.cs</OutputPath>
+			<ClassName>ForexCustomerOrderService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-IPOSecurityOrders-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-IPOSecurityOrders-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:IPOSecurityOrderService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.IPOSecurityOrders /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>IPOSecurityOrderService.cs</OutputPath>
+			<ClassName>IPOSecurityOrderService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-orderSimulations-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-orderSimulations-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:OrderSimulationService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.OrderSimulations /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>OrderSimulationService.cs</OutputPath>
+			<ClassName>OrderSimulationService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-paymentsConfiguration-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-paymentsConfiguration-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:PaymentsConfigurationService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.PaymentsConfigurations /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>PaymentsConfigurationService.cs</OutputPath>
+			<ClassName>PaymentsConfigurationService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-positionTransferOrdersRequest-service-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-positionTransferOrdersRequest-service-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:PositionTransferOrdersRequestService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.PositionTransferOrdersRequests /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>PositionTransferOrdersRequestService.cs</OutputPath>
+			<ClassName>PositionTransferOrdersRequestService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-privateEquityOrders-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-privateEquityOrders-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:PrivateEquityOrderService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.PrivateEquityOrders /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>PrivateEquityOrderService.cs</OutputPath>
+			<ClassName>PrivateEquityOrderService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-securityOrders-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-securityOrders-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:SecurityOrderService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.SecurityOrders /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>SecurityOrderService.cs</OutputPath>
+			<ClassName>SecurityOrderService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-securityTransferOrders-service-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-securityTransferOrders-service-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:SecurityTransferOrderService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.SecurityTransferOrders /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>SecurityTransferOrderService.cs</OutputPath>
+			<ClassName>SecurityTransferOrderService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-StatusReport-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-StatusReport-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:StatusReportService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.StatusReports /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>StatusReportService.cs</OutputPath>
+			<ClassName>StatusReportService</ClassName>
+		</OpenApiReference>
+-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-sweeps-service-v1.0.1-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-sweeps-service-v1.0.1-swagger.json</SourceUri>
+			<Options>/ContractsOutput:SweepService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.Sweeps /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>SweepService.cs</OutputPath>
+			<ClassName>SweepService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\order-us-payments-service-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/order-us-payments-service-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:UsPaymentService.cs /ContractsNamespace:OpenTemenos.Transacts.Order.UsPayments /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>UsPaymentService.cs</OutputPath>
+			<ClassName>UsPaymentService</ClassName>
+		</OpenApiReference>
+-->
+
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="6.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="NSwag.ApiDescription.Client" Version="13.15.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+
+</Project>

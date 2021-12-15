@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+	  <RootNamespace>OpenTemenos.Tests.Transact</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="FinancialCrimeMitigation\**" />
+    <Compile Remove="PortfolioManagement\**" />
+    <Compile Remove="Transact\**" />
+    <EmbeddedResource Remove="FinancialCrimeMitigation\**" />
+    <EmbeddedResource Remove="PortfolioManagement\**" />
+    <EmbeddedResource Remove="Transact\**" />
+    <None Remove="FinancialCrimeMitigation\**" />
+    <None Remove="PortfolioManagement\**" />
+    <None Remove="Transact\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8">
+      <TreatAsUsed>true</TreatAsUsed>
+    </PackageReference>
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Transact.Enterprise\Transact.Enterprise.csproj" />
+    <ProjectReference Include="..\src\Transact.Holding\Transact.Holding.csproj" />
+    <ProjectReference Include="..\src\Transact.Loans\Transact.Loan.csproj" />
+    <ProjectReference Include="..\src\Transact.Meta\Transact.Meta.csproj" />
+    <ProjectReference Include="..\src\Transact.Microservice\Transact.Microservice.csproj" />
+    <ProjectReference Include="..\src\Transact.Order\Transact.Order.csproj" />
+    <ProjectReference Include="..\src\Transact.Party\Transact.Party.csproj" />
+    <ProjectReference Include="..\src\Transact.Product\Transact.Product.csproj" />
+    <ProjectReference Include="..\src\Transact.Reference\Transact.Reference.csproj" />
+    <ProjectReference Include="..\src\Transact.System\Transact.System.csproj" />
+    <ProjectReference Include="..\src\Transact\Transact.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="testsettings.template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

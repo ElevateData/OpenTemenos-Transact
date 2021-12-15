@@ -1,0 +1,316 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<RootNamespace>OpenTemenos.Transacts.Holding</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-accounts-arrangements-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-accounts-arrangements-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:AccountsArrangementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.AccountsArrangements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>AccountsArrangementService.cs</OutputPath>
+			<ClassName>AccountsArrangementService</ClassName>
+		</OpenApiReference>
+-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-accounts-service-v4.3.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-accounts-service-v4.3.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:AccountService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Accounts /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>AccountService.cs</OutputPath>
+			<ClassName>AccountService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-alerts-service-v1.1.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-alerts-service-v1.1.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:AlertService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Alerts /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>AlertService.cs</OutputPath>
+			<ClassName>AlertService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-arrangements-activities-v1.0.1-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-arrangements-activities-v1.0.1-swagger.json</SourceUri>
+			<Options>/ContractsOutput:ArrangementsActivityService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.ArrangementsActivities /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ArrangementsActivityService.cs</OutputPath>
+			<ClassName>ArrangementsActivityService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-arrangements-balances-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-arrangements-balances-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:ArrangementsBalanceService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.ArrangementsBalances /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ArrangementsBalanceService.cs</OutputPath>
+			<ClassName>ArrangementsBalanceService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-arrangements-productlines-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-arrangements-productlines-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:ArrangementsProductLineService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.ArrangementsProductLines /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ArrangementsProductLineService.cs</OutputPath>
+			<ClassName>ArrangementsProductLineService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-arrangements-v3.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-arrangements-v3.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:ArrangementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Arrangements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ArrangementService.cs</OutputPath>
+			<ClassName>ArrangementService</ClassName>
+		</OpenApiReference>
+-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-cards-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-cards-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CardService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Cards /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CardService.cs</OutputPath>
+			<ClassName>CardService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-cashmanagement-bundles-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-cashmanagement-bundles-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CashManagementBundleService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.CashManagementBundles /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CashManagementBundleService.cs</OutputPath>
+			<ClassName>CashManagementBundleService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-collaterals-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-collaterals-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CollateralService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Collaterals /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CollateralService.cs</OutputPath>
+			<ClassName>CollateralService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-createNonDeliverableForwards-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-createNonDeliverableForwards-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CreateNonDeliverableForwardService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.CreateNonDeliverableForwards /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CreateNonDeliverableForwardService.cs</OutputPath>
+			<ClassName>CreateNonDeliverableForwardService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-creditAgreements-api-service-v3.1.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-creditAgreements-api-service-v3.1.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CreditAgreementsApiService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.CreditAgreementsApis /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CreditAgreementsApiService.cs</OutputPath>
+			<ClassName>CreditAgreementsApiService</ClassName>
+		</OpenApiReference>
+		-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-currencyPosition-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-currencyPosition-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CurrencyPositionService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.CurrencyPositions /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CurrencyPositionService.cs</OutputPath>
+			<ClassName>CurrencyPositionService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-customer-arrangements-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-customer-arrangements-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CustomerArrangementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.CustomerArrangements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CustomerArrangementService.cs</OutputPath>
+			<ClassName>CustomerArrangementService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-customers-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-customers-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:CustomerService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Customers /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>CustomerService.cs</OutputPath>
+			<ClassName>CustomerService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-dashboards-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-dashboards-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:DashboardService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Dashboards /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>DashboardService.cs</OutputPath>
+			<ClassName>DashboardService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-deposits-arrangements-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-deposits-arrangements-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:DepositsArrangementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.DepositsArrangements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>DepositsArrangementService.cs</OutputPath>
+			<ClassName>DepositsArrangementService</ClassName>
+		</OpenApiReference>
+		-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-deposits-service-v1.1.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-deposits-service-v1.1.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:DepositService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Deposits /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>DepositService.cs</OutputPath>
+			<ClassName>DepositService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-derivativesOptions-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-derivativesOptions-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:DerivativesOptionService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.DerivativesOptions /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>DerivativesOptionService.cs</OutputPath>
+			<ClassName>DerivativesOptionService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-entitlements-service-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-entitlements-service-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:EntitlementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Entitlements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>EntitlementService.cs</OutputPath>
+			<ClassName>EntitlementService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-forexUtilisations-service-v1.1.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-forexUtilisations-service-v1.1.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:ForexUtilizationService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.ForexUtilizations /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ForexUtilizationService.cs</OutputPath>
+			<ClassName>ForexUtilizationService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-guarantees-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-guarantees-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:GuaranteeService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Guarantees /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>GuaranteeService.cs</OutputPath>
+			<ClassName>GuaranteeService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-letterOfCredit-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-letterOfCredit-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:LetterOfCreditService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.LetterOfCredits /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>LetterOfCreditService.cs</OutputPath>
+			<ClassName>LetterOfCreditService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-limits-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-limits-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:LimitService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Limits /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>LimitService.cs</OutputPath>
+			<ClassName>LimitService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-loans-arrangements-v3.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-loans-arrangements-v3.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:LoansArrangementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.LoansArrangements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>LoansArrangementService.cs</OutputPath>
+			<ClassName>LoansArrangementService</ClassName>
+		</OpenApiReference>
+		-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-paymentStops-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-paymentStops-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:PaymentStopService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.PaymentStops /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>PaymentStopService.cs</OutputPath>
+			<ClassName>PaymentStopService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-portfolios-service-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-portfolios-service-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:PortfolioService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Portfolios /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>PortfolioService.cs</OutputPath>
+			<ClassName>PortfolioService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-portfolioSettlement-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-portfolioSettlement-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:PortfolioSettlementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.PortfolioSettlements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>PortfolioSettlementService.cs</OutputPath>
+			<ClassName>PortfolioSettlementService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-position-service-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-position-service-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:PositionService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Positions /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>PositionService.cs</OutputPath>
+			<ClassName>PositionService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-reports-service-v1.0.1-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-reports-service-v1.0.1-swagger.json</SourceUri>
+			<Options>/ContractsOutput:ReportService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Reports /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>ReportService.cs</OutputPath>
+			<ClassName>ReportService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-repurchaseAgreements-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-repurchaseAgreements-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:RepurchaseAgreementService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.RepurchaseAgreements /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>RepurchaseAgreementService.cs</OutputPath>
+			<ClassName>RepurchaseAgreementService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-securityPositions-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-securityPositions-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:SecurityPositionService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.SecurityPositions /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>SecurityPositionService.cs</OutputPath>
+			<ClassName>SecurityPositionService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-securityTrades-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-securityTrades-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:SecurityTradeService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.SecurityTrades /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>SecurityTradeService.cs</OutputPath>
+			<ClassName>SecurityTradeService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:HoldingService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Services /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>HoldingService.cs</OutputPath>
+			<ClassName>HoldingService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-swapNPVRevaluation-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-swapNPVRevaluation-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:SwapNpvRevaluationService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.SwapNpvRevaluations /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>SwapNpvRevaluationService.cs</OutputPath>
+			<ClassName>SwapNpvRevaluationService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-transactions-service-v2.1.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-transactions-service-v2.1.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:TransactionService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.Transactions /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>TransactionService.cs</OutputPath>
+			<ClassName>TransactionService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-treasury-currencies-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-treasury-currencies-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:TreasuryCurrencyService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.TreasuryCurrencies /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>TreasuryCurrencyService.cs</OutputPath>
+			<ClassName>TreasuryCurrencyService</ClassName>
+		</OpenApiReference>
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-treasury-currencyPairs-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-treasury-currencyPairs-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:TreasuryCurrencyPairService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.TreasuryCurrencyPairs /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>TreasuryCurrencyPairService.cs</OutputPath>
+			<ClassName>TreasuryCurrencyPairService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-us-accounts-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-us-accounts-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:UsAccountService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.UsAccounts /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>UsAccountService.cs</OutputPath>
+			<ClassName>UsAccountService</ClassName>
+		</OpenApiReference>
+-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-us-dashboards-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-us-dashboards-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:UsDashboardService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.UsDashboards /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>UsDashboardService.cs</OutputPath>
+			<ClassName>UsDashboardService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-us-deposits-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-us-deposits-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:UsDepositService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.UsDeposits /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>UsDepositService.cs</OutputPath>
+			<ClassName>UsDepositService</ClassName>
+		</OpenApiReference>
+-->
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-us-loans-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-us-loans-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:UsLoanService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.UsLoans /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>UsLoanService.cs</OutputPath>
+			<ClassName>UsLoanService</ClassName>
+		</OpenApiReference>
+-->
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\Holdings-us-safedeposits-service-v1.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/Holdings-us-safedeposits-service-v1.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:UsSafeDepositService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.UsSafeDeposits /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>UsSafeDepositService.cs</OutputPath>
+			<ClassName>UsSafeDepositService</ClassName>
+		</OpenApiReference>
+		<!--
+		<OpenApiReference Include="..\..\OpenApis\transact\transact\r21.07\holdings-userAdmin-service-v2.0.0-swagger.json" CodeGenerator="NSwagCSharp">
+			<SourceUri>https://raw.githubusercontent.com/temenos/APIs/master/transact/transact/r21.07/holdings-userAdmin-service-v2.0.0-swagger.json</SourceUri>
+			<Options>/ContractsOutput:UserAdminService.cs /ContractsNamespace:OpenTemenos.Transacts.Holding.UserAdmins /GenerateClientInterfaces:true /GenerateNullableReferenceTypes:true /AdditionalNamespaceUsages:OpenTemenos.Shared.Models /GenerateExceptionClasses:false /ExcludedTypeNames:ErrorHeader,QueryErrorResponse,QueryErrorResponseBody,Audit /GenerateContractsOutput:true /AdditionalContractNamespaceUsages:OpenTemenos.Shared.Models /GenerateOptionalParameters:true </Options>
+			<OutputPath>UserAdminService.cs</OutputPath>
+			<ClassName>UserAdminService</ClassName>
+		</OpenApiReference>
+		-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="6.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="NSwag.ApiDescription.Client" Version="13.15.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="..\..\OpenApis\transact\transact\r21.07\" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,3120 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Allows the creation, updation and closure of the portfolio, delinking an account from the portfolio and retrieves the account balance, valuation and other information",
+    "version" : "v2.0.0",
+    "title" : "Portfolio Management"
+  },
+  "host" : "api.temenos.com",
+  "basePath" : "/api/v2.0.0/",
+  "tags" : [ ],
+  "schemes" : ["https" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  }, {
+    "apiKey" : [ ]
+  } ],
+  "paths" : {
+    "/holdings/portfolios/{portfolioId}/portfolioClosures" : {
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Updates the closure date",
+        "description" : "Updates the closure date for a portfolio",
+        "operationId" : "updatePortfolioClosure",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PortfolioClosure"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioClosureResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioClosureResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/accountRemovals" : {
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Allows to delink an account",
+        "description" : "Allows to delink an account from the portfolio",
+        "operationId" : "updatePortfolioDelinkAccount",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PortfolioClosure"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioDelinkAccountResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioClosureResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/valuations" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves the portfolio information",
+        "description" : "Retrieves the asset and liability information based on the portfolio",
+        "operationId" : "getPortfolioValuations",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "currencyId",
+          "in" : "query",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioValuationsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioValuationsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/LTV" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves the portfolio information",
+        "description" : "Retrieves the liability information based on the portfolio and the currency",
+        "operationId" : "getPortfolioLTV",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "currencyId",
+          "in" : "query",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioLTVResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioLTVResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/ownBooks" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves the own book portfolio list",
+        "description" : "Retrieves the own book portfolio information filtered based on the portfolio id",
+        "operationId" : "getOwnBookPortfolios",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "query",
+          "description" : "Id of the portfolio or security account",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OwnBookPortfoliosResponse",
+            "schema" : {
+              "$ref" : "#/definitions/OwnBookPortfoliosResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/accounts" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves the porfolio account information",
+        "description" : "Retrieves the accounts and balance information for the portfolio",
+        "operationId" : "getPortfolioAccounts",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "Identifier of the customer",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioAccountsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioAccountsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/customers/{customerId}/portfolios" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieves the portfolio information",
+        "description" : "Retrieves the portfolio information for a single customer",
+        "operationId" : "getPortfolios",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "Identifier of the customer",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfoliosResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfoliosResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Retrieve portfolio information",
+        "description" : "Retrieves information about the customer's portfolio",
+        "operationId" : "getPortfolio",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Updates the customer's portfolio",
+        "description" : "Update details about the customer's portfolio",
+        "operationId" : "updatePortfolio",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Portfolio"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ ],
+        "summary" : "Reverses the portfolio",
+        "description" : "Reverses the portfolio that does not have positions",
+        "operationId" : "reversePortfolio",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/PortfolioDelete"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioClosureResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios" : {
+      "post" : {
+        "tags" : [ ],
+        "summary" : "Create a new portfolio for a customer",
+        "description" : "Creates a new portfolio for a securities customer",
+        "operationId" : "createPortfolio",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Portfolio"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/orderBlotters" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Allows to retrieve the pending and completed orders of the portfolio",
+        "description" : "Allows to retrieve the pending and completed orders of the portfolio",
+        "operationId" : "getPortfolioOrderBlotter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "instrumentId",
+          "in" : "query",
+          "description" : "The identifier of the instrument",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fromDate",
+          "in" : "query",
+          "description" : "Indicates the business date from when the balance reservation event is active.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "toDate",
+          "in" : "query",
+          "description" : "Indicates the business date until when the balance reservation event is active.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioOrderBlotterResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioOrderBlotterResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/securityTransactions" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Allows to retrieve security transactions of the portfolio",
+        "description" : "Allows to retrieve security transactions of the portfolio",
+        "operationId" : "getPortfolioTransactionDetails",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "Identifier of the customer",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "instrumentId",
+          "in" : "query",
+          "description" : "The identifier of the instrument",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "startDate",
+          "in" : "query",
+          "description" : "Contains the date on which the transaction or payment gets initiated.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "endDate",
+          "in" : "query",
+          "description" : "Indicates the date till which the transaction history requested. If 20120101 is the start date and 20120201 is the end date, all transactions that are booked between January 1 to February 1 2012 are returned",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioTransactionDetailsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioTransactionDetailsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/assetAllocations" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Allows to retrieve asset allocations and cash balance of the portfolio",
+        "description" : "Allows to retrieve asset allocations and cash balance of the portfolio",
+        "operationId" : "getPortfolioDetails",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioDetailsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioDetailsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/holdings/portfolios/{portfolioId}/holdings" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Allows to retrieve the holding details of the portfolio",
+        "description" : "Allows to retrieve the holding details of the portfolio",
+        "operationId" : "getPortfolioHoldings",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "portfolioId",
+          "in" : "path",
+          "description" : "Id of the portfolio or security account",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "onlineUpdate",
+          "in" : "query",
+          "description" : "The valuation for the portfolio will be done online if this flag is set to 'Y'",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PortfolioHoldingsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/PortfolioHoldingsResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    },
+    "apiKey" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "PayloadHeader" : {
+      "properties" : {
+        "override" : {
+          "type" : "object",
+          "properties" : {
+            "overrideDetails" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "description" : "The identifier of the override."
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : "The actual override message."
+                  },
+                  "code" : {
+                    "type" : "string",
+                    "description" : "The code related to override message."
+                  },
+                  "responseCode" : {
+                    "type" : "string",
+                    "description" : "The user input to accept/reject the override."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            }
+          }
+        }
+      }
+    },
+    "PortfolioClosure" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioClosureBody"
+        }
+      },
+      "description" : "PortfolioClosure"
+    },
+    "PortfolioClosureBody" : {
+      "type" : "object",
+      "properties" : {
+        "accountIds" : {
+          "type" : "array",
+          "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "account" : {
+                "type" : "string",
+                "description" : "Identifies the unique account Id of the payment entered.",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "jointHolder" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "jointHolderId" : {
+                "type" : "string",
+                "description" : "The identifier of the joint holder",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "jointRelationCode" : {
+                "type" : "number",
+                "description" : "The identifier of the relationship between joint holder and owner ",
+                "minimum" : 0,
+                "maximum" : 25
+              },
+              "additionalDetail" : {
+                "type" : "string",
+                "description" : "Additional details provided to add context. Closure notes for closed accounts, positing restriction details for restricted accounts & joint holder notes or account title for active accounts",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "customerId" : {
+          "type" : "number",
+          "description" : "Identifier of the customer",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "referenceCurrency" : {
+          "type" : "string",
+          "description" : "The reference currency",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valuationCurrency" : {
+          "type" : "string",
+          "description" : "The currency in which the account or portfolio is valued",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "portfolioName" : {
+          "type" : "string",
+          "description" : "The name that is displayed for the portfolio",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "accountOfficer" : {
+          "type" : "number",
+          "description" : "Identifier of Department Account Officer",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "investmentProgram" : {
+          "type" : "number",
+          "description" : "The identifier of the investment strategy followed by the Portfolio",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "managedAccount" : {
+          "type" : "number",
+          "description" : "The type of managed account- Discretionary or otherwise",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "safekeepChargeAccount" : {
+          "type" : "string",
+          "description" : "The cash account to which safe custody charges need to be posted",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "currencyId" : {
+          "type" : "string",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Contains the date on which the transaction or payment gets initiated."
+        },
+        "closureDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The date when the Security Account is to be closed"
+        }
+      }
+    },
+    "ScreenHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "PortfolioClosureResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioClosureResponseBody"
+        }
+      },
+      "description" : "PortfolioClosureResponse"
+    },
+    "PortfolioClosureResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "accountIds" : {
+          "type" : "array",
+          "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "account" : {
+                "type" : "string",
+                "description" : "Identifies the unique account Id of the payment entered.",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "jointHolder" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "jointHolderId" : {
+                "type" : "string",
+                "description" : "The identifier of the joint holder",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "jointRelationCode" : {
+                "type" : "number",
+                "description" : "The identifier of the relationship between joint holder and owner ",
+                "minimum" : 0,
+                "maximum" : 25
+              },
+              "additionalDetail" : {
+                "type" : "string",
+                "description" : "Additional details provided to add context. Closure notes for closed accounts, positing restriction details for restricted accounts & joint holder notes or account title for active accounts",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "customerId" : {
+          "type" : "number",
+          "description" : "Identifier of the customer",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "referenceCurrency" : {
+          "type" : "string",
+          "description" : "The reference currency",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valuationCurrency" : {
+          "type" : "string",
+          "description" : "The currency in which the account or portfolio is valued",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "portfolioName" : {
+          "type" : "string",
+          "description" : "The name that is displayed for the portfolio",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "accountOfficer" : {
+          "type" : "number",
+          "description" : "Identifier of Department Account Officer",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "investmentProgram" : {
+          "type" : "number",
+          "description" : "The identifier of the investment strategy followed by the Portfolio",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "managedAccount" : {
+          "type" : "number",
+          "description" : "The type of managed account- Discretionary or otherwise",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "safekeepChargeAccount" : {
+          "type" : "string",
+          "description" : "The cash account to which safe custody charges need to be posted",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "currencyId" : {
+          "type" : "string",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "startDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Contains the date on which the transaction or payment gets initiated."
+        },
+        "closureDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "The date when the Security Account is to be closed"
+        }
+      }
+    },
+    "ErrorHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "overrideBody" : {
+      "properties" : {
+        "overrideDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "description" : "The identifier of the override."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The actual override message."
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The code related to override message."
+              },
+              "options" : {
+                "type" : "array",
+                "description" : "The usable options for the override.",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "The type of the override."
+              }
+            }
+          }
+        }
+      }
+    },
+    "ScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/ScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "ScreenErrorResponse"
+    },
+    "ScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message "
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "BusinessScreenErrorResponse"
+    },
+    "BusinessScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message for bad requests"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "SystemScreenErrorResponse"
+    },
+    "SystemScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual Transact error message caused by server"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "QueryHeader" : {
+      "properties" : {
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "page_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records per page"
+        },
+        "page_start" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The record from which the response should be displayed"
+        },
+        "total_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records present"
+        },
+        "page_token" : {
+          "type" : "string",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request"
+        }
+      }
+    },
+    "PortfolioValuationsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioValuationsResponseBody"
+        }
+      },
+      "description" : "PortfolioValuationsResponse"
+    },
+    "PortfolioValuationsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "portfolioId" : {
+            "type" : "string",
+            "description" : "Id of the portfolio or security account",
+            "maxLength" : 18
+          },
+          "assetEstimation" : {
+            "type" : "number",
+            "description" : "Total estimation positions of the portfolio"
+          },
+          "collateralMarketValue" : {
+            "type" : "number",
+            "description" : "Total market value of the collateral"
+          },
+          "lombardValue" : {
+            "type" : "number",
+            "description" : "Lombard or collateral value of the portfolio"
+          },
+          "diversifiedLombardValue" : {
+            "type" : "number",
+            "description" : "Lombard or collateral value of the portfolio after diversification"
+          },
+          "totalLiability" : {
+            "type" : "number",
+            "description" : "The total liability of the portfolio"
+          },
+          "netLombardValue" : {
+            "type" : "number",
+            "description" : "The net Lombard value of the portfolio"
+          },
+          "limitAmount" : {
+            "type" : "number",
+            "description" : "The Limit amount that is actually available for use. The system limit checks are preformed against the online limit"
+          },
+          "limitAvailability" : {
+            "type" : "number",
+            "description" : "Limit availability  of the portfolio"
+          },
+          "securityMarginPercentage" : {
+            "type" : "number",
+            "description" : "Percentage of margin of the pledged securities"
+          },
+          "interventionPercentage" : {
+            "type" : "number",
+            "description" : "Percentage of intervention of the Lombard value of the portfolio"
+          },
+          "realisationPercentage" : {
+            "type" : "number",
+            "description" : "Percentage of realisation of the Lombard value of the portfolio",
+            "maximum" : 3
+          },
+          "pledgeBalance" : {
+            "type" : "number",
+            "description" : "The balance of the pledged securities"
+          }
+        }
+      }
+    },
+    "QueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/QueryErrorResponseBody"
+        }
+      },
+      "description" : "QueryErrorResponse"
+    },
+    "QueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message "
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessQueryErrorResponseBody"
+        }
+      },
+      "description" : "BusinessQueryErrorResponse"
+    },
+    "BusinessQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message for bad requests"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemQueryErrorResponseBody"
+        }
+      },
+      "description" : "SystemQueryErrorResponse"
+    },
+    "SystemQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual Transact error message caused by server"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "PortfolioLTVResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioLTVResponseBody"
+        }
+      },
+      "description" : "PortfolioLTVResponse"
+    },
+    "PortfolioLTVResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "instrumentId" : {
+            "type" : "string",
+            "description" : "The identifier of the instrument",
+            "maxLength" : 20
+          },
+          "instrumentName" : {
+            "type" : "string",
+            "description" : "The name that is displayed for the instrument, taken from the Security Master",
+            "maxLength" : 25
+          },
+          "subAssetType" : {
+            "type" : "string",
+            "description" : "The name of the Sub Asset Type",
+            "maxLength" : 20
+          },
+          "ISIN" : {
+            "type" : "string",
+            "description" : "The International Securities Identification Number of the instrument",
+            "maxLength" : 35
+          },
+          "marketValue" : {
+            "type" : "number",
+            "description" : "Market value for the associated position"
+          },
+          "collateralMarketValue" : {
+            "type" : "number",
+            "description" : "Total market value of the collateral"
+          },
+          "totalLiability" : {
+            "type" : "number",
+            "description" : "The total liability of the portfolio"
+          },
+          "securityMarginPercentage" : {
+            "type" : "number",
+            "description" : "Percentage of margin of the pledged securities"
+          },
+          "lombardValue" : {
+            "type" : "number",
+            "description" : "Lombard or collateral value of the portfolio"
+          },
+          "diversifiedLombardValue" : {
+            "type" : "number",
+            "description" : "Lombard or collateral value of the portfolio after diversification"
+          },
+          "pricingFlag" : {
+            "type" : "string",
+            "description" : "Indicates if the security is priced",
+            "maxLength" : 3
+          },
+          "interventionPercentage" : {
+            "type" : "number",
+            "description" : "Percentage of intervention of the Lombard value of the portfolio"
+          },
+          "interventionAmount" : {
+            "type" : "number",
+            "description" : "Amount of intervention of the Lombard value of the portfolio"
+          },
+          "realisationPercentage" : {
+            "type" : "number",
+            "description" : "Percentage of realisation of the Lombard value of the portfolio"
+          },
+          "realisationAmount" : {
+            "type" : "number",
+            "description" : "Amount of realisation of the Lombard value of the portfolio"
+          }
+        }
+      }
+    },
+    "OwnBookPortfoliosResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/OwnBookPortfoliosResponseBody"
+        }
+      },
+      "description" : "OwnBookPortfoliosResponse"
+    },
+    "OwnBookPortfoliosResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "portfolioId" : {
+            "type" : "string",
+            "description" : "Id of the portfolio or security account",
+            "maxLength" : 14
+          },
+          "referenceCurrency" : {
+            "type" : "string",
+            "description" : "The reference currency",
+            "maxLength" : 3
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Display name or short name of the account specified.",
+            "maxLength" : 35
+          }
+        }
+      }
+    },
+    "PortfolioAccountsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioAccountsResponseBody"
+        }
+      },
+      "description" : "PortfolioAccountsResponse"
+    },
+    "PortfolioAccountsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "accountId" : {
+            "type" : "string",
+            "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN",
+            "maxLength" : 16
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Display name or short name of the account specified.",
+            "maxLength" : 35
+          },
+          "accountCurrency" : {
+            "type" : "string",
+            "description" : "Currency of the account. For example: USD, GBP.",
+            "maxLength" : 3
+          },
+          "workingBalance" : {
+            "type" : "number",
+            "description" : "Real-time balance including all authorised transactions posted against the account and, unless it is a nostro or internal account, unauthorised debit entries."
+          }
+        }
+      }
+    },
+    "PortfoliosResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfoliosResponseBody"
+        }
+      },
+      "description" : "PortfoliosResponse"
+    },
+    "PortfoliosResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "portfolioId" : {
+            "type" : "string",
+            "description" : "Id of the portfolio or security account",
+            "maxLength" : 18
+          },
+          "depositoryId" : {
+            "type" : "string",
+            "description" : "Id of the securities depository.",
+            "maxLength" : 10
+          },
+          "subAccount" : {
+            "type" : "string",
+            "description" : "The sub-account that the security position is held in.",
+            "maxLength" : 35
+          },
+          "subAcctExtId" : {
+            "type" : "string",
+            "description" : "This is to indicate the external identifier of the sub account maintained with depository",
+            "maxLength" : 35
+          },
+          "valuationCurrency" : {
+            "type" : "string",
+            "description" : "The currency in which the account or portfolio is valued",
+            "maxLength" : 3
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Display name or short name of the account specified.",
+            "maxLength" : 35
+          },
+          "investmentProgram" : {
+            "type" : "string",
+            "description" : "The identifier of the investment strategy followed by the Portfolio",
+            "maxLength" : 20
+          },
+          "managedAccount" : {
+            "type" : "string",
+            "description" : "The type of managed account- Discretionary or otherwise",
+            "maxLength" : 25
+          },
+          "referenceCurrency" : {
+            "type" : "string",
+            "description" : "The reference currency",
+            "maxLength" : 3
+          },
+          "valuationAmt" : {
+            "type" : "number",
+            "description" : "This is the valuation amount of the portfolio in reference currency"
+          },
+          "customerId" : {
+            "type" : "string",
+            "description" : "Identifier of the customer",
+            "maxLength" : 10
+          },
+          "customerName" : {
+            "type" : "string",
+            "description" : "Name of the customer"
+          },
+          "jointCustomer" : {
+            "type" : "string",
+            "description" : "Joint or related customer id",
+            "maxLength" : 10
+          },
+          "jointCustomerName" : {
+            "type" : "string",
+            "description" : "Name of Joint Customer"
+          }
+        }
+      }
+    },
+    "PortfolioDelete" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        }
+      },
+      "description" : "PortfolioDelete"
+    },
+    "Portfolio" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioBody"
+        }
+      },
+      "description" : "Portfolio"
+    },
+    "PortfolioBody" : {
+      "type" : "object",
+      "properties" : {
+        "accountIds" : {
+          "type" : "array",
+          "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "account" : {
+                "type" : "string",
+                "description" : "Identifies the unique account Id of the payment entered.",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "jointHolder" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "jointHolderId" : {
+                "type" : "string",
+                "description" : "The identifier of the joint holder",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "jointRelationCode" : {
+                "type" : "string",
+                "description" : "The identifier of the relationship between joint holder and owner ",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "additionalDetail" : {
+                "type" : "string",
+                "description" : "Additional details provided to add context. Closure notes for closed accounts, positing restriction details for restricted accounts & joint holder notes or account title for active accounts",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "customerId" : {
+          "type" : "string",
+          "description" : "Identifier of the customer",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "referenceCurrency" : {
+          "type" : "string",
+          "description" : "The reference currency",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valuationCurrency" : {
+          "type" : "string",
+          "description" : "The currency in which the account or portfolio is valued",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "portfolioName" : {
+          "type" : "string",
+          "description" : "The name that is displayed for the portfolio",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "accountOfficer" : {
+          "type" : "string",
+          "description" : "Identifier of Department Account Officer",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "investmentProgram" : {
+          "type" : "string",
+          "description" : "The identifier of the investment strategy followed by the Portfolio",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "managedAccount" : {
+          "type" : "string",
+          "description" : "The type of managed account- Discretionary or otherwise",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "safekeepChargeAccount" : {
+          "type" : "string",
+          "description" : "The cash account to which safe custody charges need to be posted",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "startDate" : {
+          "type" : "string",
+          "description" : "Contains the date on which the transaction or payment gets initiated.",
+          "minLength" : 0,
+          "maxLength" : 25
+        }
+      }
+    },
+    "PortfolioResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioResponseBody"
+        }
+      },
+      "description" : "PortfolioResponse"
+    },
+    "PortfolioResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "accountIds" : {
+          "type" : "array",
+          "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "account" : {
+                "type" : "string",
+                "description" : "Identifies the unique account Id of the payment entered.",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "jointHolder" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "jointHolderId" : {
+                "type" : "string",
+                "description" : "The identifier of the joint holder",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "jointRelationCode" : {
+                "type" : "string",
+                "description" : "The identifier of the relationship between joint holder and owner ",
+                "minLength" : 0,
+                "maxLength" : 25
+              },
+              "additionalDetail" : {
+                "type" : "string",
+                "description" : "Additional details provided to add context. Closure notes for closed accounts, positing restriction details for restricted accounts & joint holder notes or account title for active accounts",
+                "minLength" : 0,
+                "maxLength" : 25
+              }
+            }
+          }
+        },
+        "customerId" : {
+          "type" : "string",
+          "description" : "Identifier of the customer",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "referenceCurrency" : {
+          "type" : "string",
+          "description" : "The reference currency",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "valuationCurrency" : {
+          "type" : "string",
+          "description" : "The currency in which the account or portfolio is valued",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "portfolioName" : {
+          "type" : "string",
+          "description" : "The name that is displayed for the portfolio",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "accountOfficer" : {
+          "type" : "string",
+          "description" : "Identifier of Department Account Officer",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "investmentProgram" : {
+          "type" : "string",
+          "description" : "The identifier of the investment strategy followed by the Portfolio",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "managedAccount" : {
+          "type" : "string",
+          "description" : "The type of managed account- Discretionary or otherwise",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "safekeepChargeAccount" : {
+          "type" : "string",
+          "description" : "The cash account to which safe custody charges need to be posted",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "startDate" : {
+          "type" : "string",
+          "description" : "Contains the date on which the transaction or payment gets initiated.",
+          "minLength" : 0,
+          "maxLength" : 25
+        }
+      }
+    },
+    "PortfolioOrderBlotterResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioOrderBlotterResponseBody"
+        }
+      },
+      "description" : "PortfolioOrderBlotterResponse"
+    },
+    "PortfolioOrderBlotterResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "transactionReference" : {
+            "type" : "string",
+            "description" : "Contains the identifier for the transaction in the core system",
+            "maxLength" : 30
+          },
+          "ISIN" : {
+            "type" : "string",
+            "description" : "The International Securities Identification Number of the instrument",
+            "maxLength" : 20
+          },
+          "instrumentId" : {
+            "type" : "string",
+            "description" : "The identifier of the instrument",
+            "maxLength" : 20
+          },
+          "instrumentName" : {
+            "type" : "string",
+            "description" : "The name that is displayed for the instrument, taken from the Security Master",
+            "maxLength" : 50
+          },
+          "stockExchange" : {
+            "type" : "string",
+            "description" : "The stock exchange identifier",
+            "maxLength" : 10
+          },
+          "transactionType" : {
+            "type" : "string",
+            "description" : "Identifies the transaction type applicable to the transaction being processed, i.e. outward or inward payment. For example: ACPX, OTPX etc.",
+            "maxLength" : 10
+          },
+          "orderType" : {
+            "type" : "string",
+            "description" : "Identifies the type of the order. Possible values are Single, Ifdone, Revol, oco. Single order - only one order item may be input. If done order -  If one order gets executed, the other order is also executed immediately. Revolving order -  based on the condition specified, it will wait for both the deals to be executed simultaneously. OCO -If one order gets executed, then the other order gets cancelled.",
+            "maxLength" : 10
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "The nominal quantity"
+          },
+          "limitPrice" : {
+            "type" : "string",
+            "description" : "The Price at which the shares are to be bought or sold",
+            "maxLength" : 10
+          },
+          "price" : {
+            "type" : "string",
+            "description" : "The Price at which the nominal amount of the Security is to be valued for the transaction.",
+            "maxLength" : 10
+          },
+          "orderStatus" : {
+            "type" : "string",
+            "description" : "Status of the order.",
+            "maxLength" : 20
+          },
+          "orderDate" : {
+            "type" : "string",
+            "format" : "date",
+            "description" : "The order date of the instructions contained within the transaction"
+          },
+          "orderedAt" : {
+            "type" : "string",
+            "description" : "The time at which the order has been transacted"
+          },
+          "instrumentCurrencyId" : {
+            "type" : "string",
+            "description" : "The currency of the instrument"
+          },
+          "limitType" : {
+            "type" : "string",
+            "description" : "Defines the limit type for the trade"
+          }
+        }
+      }
+    },
+    "PortfolioTransactionDetailsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioTransactionDetailsResponseBody"
+        }
+      },
+      "description" : "PortfolioTransactionDetailsResponse"
+    },
+    "PortfolioTransactionDetailsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "transactionId" : {
+            "type" : "string",
+            "description" : "Unique transaction identifier for retrieving the details of the transaction. For example: FT0102030333 etc."
+          },
+          "instrument" : {
+            "type" : "string",
+            "description" : "The instrument identifier",
+            "maxLength" : 10
+          },
+          "instrumentName" : {
+            "type" : "string",
+            "description" : "The name that is displayed for the instrument, taken from the Security Master"
+          },
+          "ISIN" : {
+            "type" : "string",
+            "description" : "The International Securities Identification Number of the instrument"
+          },
+          "tradeCurrency" : {
+            "type" : "string",
+            "description" : "The trade currency is the settlement currency for the trade"
+          },
+          "tradeDate" : {
+            "type" : "string",
+            "format" : "date",
+            "description" : "Standard date field which records trade date of the account"
+          },
+          "valueDate" : {
+            "type" : "string",
+            "format" : "date",
+            "description" : "Indicates the value date on which the underlying accounting entry is to be given value (for interest purposes)"
+          },
+          "stockExchange" : {
+            "type" : "string",
+            "description" : "The stock exchange identifier"
+          },
+          "customer" : {
+            "type" : "string",
+            "description" : "Contains the customer identifier to fetch list of consent arrangements for the customer or customer identifier of the debtor account. This will be populated once the SCA(Strong Customer Authentication) is completed."
+          },
+          "portfolioId" : {
+            "type" : "string",
+            "description" : "Id of the portfolio or security account",
+            "maxLength" : 10
+          },
+          "transactionType" : {
+            "type" : "string",
+            "description" : "Identifies the transaction type applicable to the transaction being processed, i.e. outward or inward payment. For example: ACPX, OTPX etc."
+          },
+          "quantity" : {
+            "type" : "string",
+            "description" : "The nominal quantity"
+          },
+          "instrumentCurrencyId" : {
+            "type" : "string",
+            "description" : "The currency of the instrument"
+          },
+          "price" : {
+            "type" : "string",
+            "description" : "The Price at which the nominal amount of the Security is to be valued for the transaction."
+          },
+          "grossAmount" : {
+            "type" : "number",
+            "description" : "Contains the gross amount"
+          },
+          "valueInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "The amount converted to the required reference currency"
+          },
+          "netAmount" : {
+            "type" : "number",
+            "description" : "Holds the total amount"
+          },
+          "amountInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "Contains description of the Asset Type"
+          },
+          "exchangeRate" : {
+            "type" : "string",
+            "description" : "Contains the exchange rate returned from the system. i.e. For entries over foreign currency accounts, this contains the rate which used to convert the currency amount to the local equivalent at the time of the originating transaction."
+          },
+          "feesAndTaxesInSecurityCurrency" : {
+            "type" : "number",
+            "description" : "Indicates the fees and taxes calculated in Instrument Currency"
+          },
+          "feesAndTaxesInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "Indicates the fees and taxes derived in portfolio Reference Currency"
+          },
+          "inputterId" : {
+            "type" : "string",
+            "description" : "Captures the Id of the user who performed the activity on the arrangement"
+          },
+          "application" : {
+            "type" : "string",
+            "description" : "Name of the application or virtual table"
+          },
+          "referenceCurrency" : {
+            "type" : "string",
+            "description" : "The reference currency"
+          }
+        }
+      }
+    },
+    "PortfolioDetailsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioDetailsResponseBody"
+        }
+      },
+      "description" : "PortfolioDetailsResponse"
+    },
+    "PortfolioDetailsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "portfolioId" : {
+            "type" : "string",
+            "description" : "Id of the portfolio or security account",
+            "maxLength" : 20
+          },
+          "portfolioName" : {
+            "type" : "string",
+            "description" : "The name that is displayed for the portfolio",
+            "maxLength" : 35
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date",
+            "description" : "Indicates the date on which activity was performed"
+          },
+          "valuationAmt" : {
+            "type" : "string",
+            "description" : "This is the valuation amount of the portfolio in reference currency",
+            "maxLength" : 20
+          },
+          "referenceCurrency" : {
+            "type" : "string",
+            "description" : "The reference currency",
+            "maxLength" : 3
+          },
+          "valuationCurrency" : {
+            "type" : "string",
+            "description" : "The currency in which the account or portfolio is valued",
+            "maxLength" : 3
+          },
+          "customerId" : {
+            "type" : "string",
+            "description" : "Identifier of the customer",
+            "maxLength" : 20
+          },
+          "customerName" : {
+            "type" : "string",
+            "description" : "Name of the customer",
+            "maxLength" : 20
+          },
+          "unrealProfitLoss" : {
+            "type" : "number",
+            "description" : "The unrealised profit or loss i.e. Profit or loss arising out of revaluation of open positions."
+          },
+          "unrealisedProfitLossPercentage" : {
+            "type" : "string",
+            "description" : "Contains the unrealised Profit Loss Percentage"
+          },
+          "assetType" : {
+            "type" : "string",
+            "description" : "Type of the asset, e.g. FX, equity, etc."
+          },
+          "assetTypeDescription" : {
+            "type" : "string",
+            "description" : "Contains description of the Asset Type"
+          },
+          "subAssetTypeId" : {
+            "type" : "string",
+            "description" : "Identifies the group of like Securities, which are reported together ",
+            "maxLength" : 10
+          },
+          "subAssetType" : {
+            "type" : "string",
+            "description" : "The name of the Sub Asset Type",
+            "maxLength" : 35
+          },
+          "valueInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "The amount converted to the required reference currency"
+          },
+          "accountId" : {
+            "type" : "string",
+            "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN",
+            "maxLength" : 20
+          },
+          "accountName" : {
+            "type" : "string",
+            "description" : "Display name or short name of the account specified.",
+            "maxLength" : 35
+          },
+          "accountCurrency" : {
+            "type" : "string",
+            "description" : "Currency of the account. For example: USD, GBP."
+          },
+          "amountInAccountCurrency" : {
+            "type" : "number",
+            "description" : "Amount in the currency of the account"
+          },
+          "amountInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "Contains description of the Asset Type"
+          }
+        }
+      }
+    },
+    "PortfolioHoldingsResponseQueryHeader" : {
+      "properties" : {
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by Transact"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "page_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records per page"
+        },
+        "page_start" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The record from which the response should be displayed"
+        },
+        "total_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records present"
+        },
+        "page_token" : {
+          "type" : "string",
+          "description" : "Unique id expected to get as part of response from Transact on every enquiry request"
+        },
+        "data" : {
+          "type" : "object",
+          "properties" : {
+            "portfolioId" : {
+              "type" : "string",
+              "description" : "Id of the portfolio or security account",
+              "maxLength" : 10
+            },
+            "portfolioName" : {
+              "type" : "string",
+              "description" : "The name that is displayed for the portfolio"
+            },
+            "referenceCurrency" : {
+              "type" : "string",
+              "description" : "The reference currency",
+              "maxLength" : 3
+            },
+            "valuationCurrency" : {
+              "type" : "string",
+              "description" : "The currency in which the account or portfolio is valued",
+              "maxLength" : 3
+            },
+            "totalAmount" : {
+              "type" : "number",
+              "description" : "Total amount"
+            }
+          }
+        }
+      }
+    },
+    "PortfolioHoldingsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PortfolioHoldingsResponseQueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/PortfolioHoldingsResponseBody"
+        }
+      },
+      "description" : "PortfolioHoldingsResponse"
+    },
+    "PortfolioHoldingsResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "currency" : {
+            "type" : "string",
+            "description" : "Identifies the currency. E.g. USD, GBP etc",
+            "maxLength" : 3
+          },
+          "instrumentId" : {
+            "type" : "string",
+            "description" : "The identifier of the instrument",
+            "maxLength" : 35
+          },
+          "instrumentName" : {
+            "type" : "string",
+            "description" : "The name that is displayed for the instrument, taken from the Security Master",
+            "maxLength" : 55
+          },
+          "ISIN" : {
+            "type" : "string",
+            "description" : "The International Securities Identification Number of the instrument",
+            "maxLength" : 50
+          },
+          "industryName" : {
+            "type" : "string",
+            "description" : "Identifies the name of the industry in which the security belongs to.",
+            "maxLength" : 50
+          },
+          "quantity" : {
+            "type" : "number",
+            "description" : "The nominal quantity"
+          },
+          "costPrice" : {
+            "type" : "number",
+            "description" : "Cost price of the Instrument"
+          },
+          "costPriceInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "Contains the cost price in portfolio reference currency"
+          },
+          "costValue" : {
+            "type" : "number",
+            "description" : "Contains the total cost value of the asset"
+          },
+          "costValueInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "Contains the derived total cost value of the asset in portfolio reference currency"
+          },
+          "marketPrice" : {
+            "type" : "number",
+            "description" : "Current Market Price of the Security"
+          },
+          "estimation" : {
+            "type" : "string",
+            "description" : "The value of the Portfolio at current market price"
+          },
+          "assetEstimation" : {
+            "type" : "number",
+            "description" : "Total estimation positions of the portfolio"
+          },
+          "unrealizedPLInReferenceCurrency" : {
+            "type" : "number",
+            "description" : "Contains the unrealised profit and loss amount in portfolio reference currency"
+          },
+          "unrealizedProfitLoss" : {
+            "type" : "number",
+            "description" : "Unrealized profit and loss"
+          },
+          "unrealisedProfitLossPercentage" : {
+            "type" : "string",
+            "description" : "Contains the unrealised Profit Loss Percentage"
+          },
+          "unrealizedPLPercentageReferenceCurrency" : {
+            "type" : "string",
+            "description" : "Contains the unrealized profit and loss percentage in portfolio reference currency"
+          },
+          "weight" : {
+            "type" : "string",
+            "description" : "Indicates the weightage of the security holdings against the total estimation of a portfolio in reference currency."
+          },
+          "application" : {
+            "type" : "string",
+            "description" : "Name of the application or virtual table",
+            "maxLength" : 19
+          },
+          "stockExchange" : {
+            "type" : "string",
+            "description" : "The stock exchange identifier"
+          },
+          "displayName" : {
+            "type" : "string",
+            "description" : "Contains the name used for display or enrichment purposes"
+          },
+          "subAssetTypeId" : {
+            "type" : "string",
+            "description" : "Identifies the group of like Securities, which are reported together ",
+            "maxLength" : 5
+          },
+          "subAssetType" : {
+            "type" : "string",
+            "description" : "The name of the Sub Asset Type",
+            "maxLength" : 50
+          },
+          "assetType" : {
+            "type" : "string",
+            "description" : "Type of the asset, e.g. FX, equity, etc.",
+            "maxLength" : 3
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Contains the description of purpose of the payment.",
+            "maxLength" : 50
+          },
+          "instrumentDomicile" : {
+            "type" : "string",
+            "description" : "Specifies the country domicile of the Security being issued"
+          }
+        }
+      }
+    }
+  }
+}

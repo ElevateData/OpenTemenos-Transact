@@ -1,0 +1,577 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API to retrieve the fixing date of a non-deliverable forward contract based on the contract details supplied.",
+    "version" : "v1.0.0",
+    "title" : "Treasury non deliverable forwards"
+  },
+  "host" : "api.temenos.com",
+  "basePath" : "/api/v1.0.0/v1.0.0/",
+  "tags" : [ ],
+  "schemes" : ["https" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  }, {
+    "apiKey" : [ ]
+  } ],
+  "paths" : {
+    "/holdings/nonDeliverableForwards" : {
+      "post" : {
+        "tags" : [ ],
+        "operationId" : "createNonDeliverableForwards",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/NonDeliverableForwards"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "The identifier of the underlying Entity/Company/Branch.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "NonDeliverableForwardsResponse",
+            "schema" : {
+              "$ref" : "#/definitions/NonDeliverableForwardsResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    },
+    "apiKey" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "PayloadHeader" : {
+      "properties" : {
+        "override" : {
+          "type" : "object",
+          "properties" : {
+            "overrideDetails" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "description" : "The identifier of the override."
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : "The actual override message."
+                  },
+                  "code" : {
+                    "type" : "string",
+                    "description" : "The code related to override message."
+                  },
+                  "responseCode" : {
+                    "type" : "string",
+                    "description" : "The user input to accept/reject the override."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            }
+          }
+        }
+      }
+    },
+    "NonDeliverableForwards" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/NonDeliverableForwardsBody"
+        }
+      },
+      "description" : "NonDeliverableForwards"
+    },
+    "NonDeliverableForwardsBody" : {
+      "type" : "object",
+      "properties" : {
+        "NDFType" : {
+          "type" : "string",
+          "description" : "Indicates the NDF type for the contract,e.g.VANILLA,EXOTIC.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "counterparty" : {
+          "type" : "string",
+          "description" : "The counterparty ID  for the  deal.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "portfolioId" : {
+          "type" : "string",
+          "description" : "Id of the portfolio or security account",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "buyOrSell" : {
+          "type" : "string",
+          "description" : "Whether the transaction is a buy or a sell.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealCurrency" : {
+          "type" : "string",
+          "description" : "Identifies the transaction currency involved in the Deal",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "settlementCurrency" : {
+          "type" : "string",
+          "description" : "The currency of the trade settlement",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealAmount" : {
+          "type" : "number",
+          "description" : "Identifies the transaction amount involved in the Deal",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "notionalSettlementAmount" : {
+          "type" : "number",
+          "description" : "Indicates the deal amount equivalent in settlement currency using notional rate.",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "valueDate" : {
+          "type" : "string",
+          "description" : "Indicates the value date on which the underlying accounting entry is to be given value (for interest purposes)",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Date on which the deal was agreed. "
+        },
+        "notionalRate" : {
+          "type" : "string",
+          "description" : "Indicates the notional exchange rate between deal and settlement currency.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "settlementRateSource" : {
+          "type" : "string",
+          "description" : "Indicates the reliable settlement source for each currency where terms are governed by an EMTA template and used by NDF application.e.g.CNY01,INR11",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "fixedDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Indicates the NDF Fixing date. The date on which the rate fixing was performed. The date in the standard format YYYYMMDD e.g.20201231"
+        }
+      }
+    },
+    "ScreenHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "NonDeliverableForwardsResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/NonDeliverableForwardsResponseBody"
+        }
+      },
+      "description" : "NonDeliverableForwardsResponse"
+    },
+    "NonDeliverableForwardsResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "NDFType" : {
+          "type" : "string",
+          "description" : "Indicates the NDF type for the contract,e.g.VANILLA,EXOTIC.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "counterparty" : {
+          "type" : "string",
+          "description" : "The counterparty ID  for the  deal.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "portfolioId" : {
+          "type" : "string",
+          "description" : "Id of the portfolio or security account",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "buyOrSell" : {
+          "type" : "string",
+          "description" : "Whether the transaction is a buy or a sell.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealCurrency" : {
+          "type" : "string",
+          "description" : "Identifies the transaction currency involved in the Deal",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "settlementCurrency" : {
+          "type" : "string",
+          "description" : "The currency of the trade settlement",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealAmount" : {
+          "type" : "number",
+          "description" : "Identifies the transaction amount involved in the Deal",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "notionalSettlementAmount" : {
+          "type" : "number",
+          "description" : "Indicates the deal amount equivalent in settlement currency using notional rate.",
+          "minimum" : 0,
+          "maximum" : 25
+        },
+        "valueDate" : {
+          "type" : "string",
+          "description" : "Indicates the value date on which the underlying accounting entry is to be given value (for interest purposes)",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "dealDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Date on which the deal was agreed. "
+        },
+        "notionalRate" : {
+          "type" : "string",
+          "description" : "Indicates the notional exchange rate between deal and settlement currency.",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "settlementRateSource" : {
+          "type" : "string",
+          "description" : "Indicates the reliable settlement source for each currency where terms are governed by an EMTA template and used by NDF application.e.g.CNY01,INR11",
+          "minLength" : 0,
+          "maxLength" : 25
+        },
+        "fixedDate" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "Indicates the NDF Fixing date. The date on which the rate fixing was performed. The date in the standard format YYYYMMDD e.g.20201231"
+        }
+      }
+    },
+    "ErrorHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "overrideBody" : {
+      "properties" : {
+        "overrideDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "description" : "The identifier of the override."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The actual override message."
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The code related to override message."
+              },
+              "options" : {
+                "type" : "array",
+                "description" : "The usable options for the override.",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "The type of the override."
+              }
+            }
+          }
+        }
+      }
+    },
+    "ScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/ScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "ScreenErrorResponse"
+    },
+    "ScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message "
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "BusinessScreenErrorResponse"
+    },
+    "BusinessScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message for bad requests"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "SystemScreenErrorResponse"
+    },
+    "SystemScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message caused by server"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    }
+  }
+}

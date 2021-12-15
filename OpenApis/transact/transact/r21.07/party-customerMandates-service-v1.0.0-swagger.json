@@ -1,0 +1,1246 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API to create, update and manage signatory mandates and perform mandate check simulation for a transaction. Mandates are configurable settings in the system for financial or non financial transactions that require a set of valid signatories approvals before transactions can be authorized",
+    "version" : "v1.0.0",
+    "title" : "Management of signatory mandates"
+  },
+  "host" : "api.temenos.com",
+  "basePath" : "/api/v1.0.0/",
+  "tags" : [ ],
+  "schemes" : ["https" ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  }, {
+    "apiKey" : [ ]
+  } ],
+  "paths" : {
+    "/party/customers/mandates/{customerId}" : {
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Update the mandate details for customer",
+        "description" : "Update the existing mandate details for specific customer",
+        "operationId" : "updateMandate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "Identifier of the customer",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Mandate"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "MandateResponse",
+            "schema" : {
+              "$ref" : "#/definitions/MandateResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/party/mandates/parameters/{applicationId}" : {
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Update the mandate parameter details",
+        "description" : "Update the existing mandate parameter details for specific application",
+        "operationId" : "updateMandateParameter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "applicationId",
+          "in" : "path",
+          "description" : "Contains the application id of the service that has crashed due to error.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/MandateParameter"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "MandateParameterResponse",
+            "schema" : {
+              "$ref" : "#/definitions/MandateParameterResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/party/customers/signatories/{signatoryGroupId}" : {
+      "put" : {
+        "tags" : [ ],
+        "summary" : "Update the signatory group details",
+        "description" : "Update the existing signatory details for specific customer group",
+        "operationId" : "updateSignatoryGroup",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "signatoryGroupId",
+		  "description" : "Specifies the minimum signatory group id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "payload",
+          "description" : "body Payload",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SignatoryGroup"
+          }
+        }, {
+          "name" : "validate_only",
+          "in" : "query",
+          "description" : "The identifier to indicate if it is set to only validate or not.",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SignatoryGroupResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SignatoryGroupResponse"
+            }
+          },
+          "default" : {
+            "description" : "ScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/ScreenErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessScreenErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemScreenErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemScreenErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/party/mandates/signatories/transactionSimulations/{transactionSimulationId}" : {
+      "get" : {
+        "tags" : [ ],
+        "summary" : "Simulate Mandate Processing for a Transaction",
+        "description" : "Simulate mandate processing for a transaction based on the transaction account, customer or portfolio, transaction amount, currency and list of signatories.",
+        "operationId" : "simulateSignatoryMandateProcessing",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "transactionSimulationId",
+          "in" : "path",
+          "description" : "Indicates the application or version reference on which the transaction simulation is being performed",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "Identifier of the customer",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "accountId",
+          "in" : "query",
+          "description" : "Identifier of the account. Often referred to as the account number, yet for consistency this is always referred to as accountId. Accepts both IBAN & BBAN",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "portfolioId",
+          "in" : "query",
+          "description" : "Id of the portfolio or security account",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "amount",
+          "in" : "query",
+          "description" : "This is the payment amount",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "currencyId",
+          "in" : "query",
+          "description" : "Identifier of the currency. This is the 3-letter ISO 4217 code of the currency.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "signatory",
+          "in" : "query",
+          "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "page_size",
+          "in" : "query",
+          "description" : "The total number of records per page",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_start",
+          "in" : "query",
+          "description" : "The record from which the response should be displayed",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "page_token",
+          "in" : "query",
+          "description" : "Unique id expected to get as part of response from t24 on every enquiry request.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "credentials",
+          "in" : "header",
+          "description" : "Username and password to authenticate the API against core-banking.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "companyId",
+          "in" : "header",
+          "description" : "Identifier of the lead company of the underlying Entity/Company/Branch for the respective contract for customer data protection purposes. Example US0010001.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "deviceId",
+          "in" : "header",
+          "description" : "Identifies the device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "userRole",
+          "in" : "header",
+          "description" : "User who initiated the transaction",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "disablePagination",
+          "in" : "header",
+          "description" : "Indicates the pagination header attributes availability. If set to 'true', it fetches all the data",
+          "required" : false,
+          "type" : "boolean"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SignatoryMandateProcessingResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SignatoryMandateProcessingResponse"
+            }
+          },
+          "default" : {
+            "description" : "QueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/QueryErrorResponse"
+            }
+          },
+          "400" : {
+            "description" : "BusinessQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/BusinessQueryErrorResponse"
+            }
+          },
+          "500" : {
+            "description" : "SystemQueryErrorResponse",
+            "schema" : {
+              "$ref" : "#/definitions/SystemQueryErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    },
+    "apiKey" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "PayloadHeader" : {
+      "properties" : {
+        "override" : {
+          "type" : "object",
+          "properties" : {
+            "overrideDetails" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string",
+                    "description" : "The identifier of the override."
+                  },
+                  "description" : {
+                    "type" : "string",
+                    "description" : "The actual override message."
+                  },
+                  "code" : {
+                    "type" : "string",
+                    "description" : "The code related to override message."
+                  },
+                  "responseCode" : {
+                    "type" : "string",
+                    "description" : "The user input to accept/reject the override."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            }
+          }
+        }
+      }
+    },
+    "Mandate" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/MandateBody"
+        }
+      },
+      "description" : "Mandate"
+    },
+    "MandateBody" : {
+      "type" : "object",
+      "properties" : {
+        "mandates" : {
+          "type" : "array",
+          "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "upToAmount" : {
+                "type" : "string",
+                "description" : "This is a system maintained field containing the amount on which the commission rate is applied to arrive at the commission amount.",
+                "minLength" : 0,
+                "maxLength" : 10
+              },
+              "signatories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "signatoryGroup" : {
+                      "type" : "string",
+                      "description" : "Valid signatory groups belong to customer",
+                      "minLength" : 0,
+                      "maxLength" : 14
+                    },
+                    "minimumNumberOfSignatories" : {
+                      "type" : "string",
+                      "description" : "Minimum number of signatories required",
+                      "minLength" : 0,
+                      "maxLength" : 26
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rules" : {
+          "type" : "array",
+          "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "mandateRule" : {
+                "type" : "string",
+                "description" : "Mandate rule for the application",
+                "minLength" : 0,
+                "maxLength" : 11
+              },
+              "signatories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ruleSignatoryGroup" : {
+                      "type" : "string",
+                      "description" : "Signatory group rule",
+                      "minLength" : 0,
+                      "maxLength" : 18
+                    },
+                    "ruleMinimumSignatory" : {
+                      "type" : "string",
+                      "description" : "Minimum signatory rule",
+                      "minLength" : 0,
+                      "maxLength" : 20
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 11
+        },
+        "limitCurrencyId" : {
+          "type" : "string",
+          "description" : "Currency used in this mandate for amounts",
+          "minLength" : 0,
+          "maxLength" : 15
+        }
+      }
+    },
+    "ScreenHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "MandateResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/MandateResponseBody"
+        }
+      },
+      "description" : "MandateResponse"
+    },
+    "MandateResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "mandates" : {
+          "type" : "array",
+          "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "upToAmount" : {
+                "type" : "string",
+                "description" : "This is a system maintained field containing the amount on which the commission rate is applied to arrive at the commission amount.",
+                "minLength" : 0,
+                "maxLength" : 10
+              },
+              "signatories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "signatoryGroup" : {
+                      "type" : "string",
+                      "description" : "Valid signatory groups belong to customer",
+                      "minLength" : 0,
+                      "maxLength" : 14
+                    },
+                    "minimumNumberOfSignatories" : {
+                      "type" : "string",
+                      "description" : "Minimum number of signatories required",
+                      "minLength" : 0,
+                      "maxLength" : 26
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rules" : {
+          "type" : "array",
+          "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "mandateRule" : {
+                "type" : "string",
+                "description" : "Specifies the mandate rule",
+                "minLength" : 0,
+                "maxLength" : 11
+              },
+              "signatories" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "ruleSignatoryGroup" : {
+                      "type" : "string",
+                      "description" : "Signatory rule group",
+                      "minLength" : 0,
+                      "maxLength" : 18
+                    },
+                    "ruleMinimumSignatory" : {
+                      "type" : "string",
+                      "description" : "Minimum signatory rule",
+                      "minLength" : 0,
+                      "maxLength" : 20
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 11
+        },
+        "limitCurrencyId" : {
+          "type" : "string",
+          "description" : "Currency used in this mandate for amounts",
+          "minLength" : 0,
+          "maxLength" : 15
+        }
+      }
+    },
+    "ErrorHeader" : {
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "The Identifier of the record created"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "transactionStatus" : {
+          "type" : "string",
+          "description" : "The status of the transaction"
+        },
+        "uniqueIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identifier/Message Reference of the record created."
+        },
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        }
+      }
+    },
+    "overrideBody" : {
+      "properties" : {
+        "overrideDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "description" : "The identifier of the override."
+              },
+              "description" : {
+                "type" : "string",
+                "description" : "The actual override message."
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The code related to override message."
+              },
+              "options" : {
+                "type" : "array",
+                "description" : "The usable options for the override.",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "type" : {
+                "type" : "string",
+                "description" : "The type of the override."
+              }
+            }
+          }
+        }
+      }
+    },
+    "ScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/ScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "ScreenErrorResponse"
+    },
+    "ScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message "
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "BusinessScreenErrorResponse"
+    },
+    "BusinessScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message for bad requests"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemScreenErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemScreenErrorResponseBody"
+        },
+        "override" : {
+          "$ref" : "#/definitions/overrideBody"
+        }
+      },
+      "description" : "SystemScreenErrorResponse"
+    },
+    "SystemScreenErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "fieldName" : {
+                "type" : "string",
+                "description" : "The name of the field"
+              },
+              "code" : {
+                "type" : "string",
+                "description" : "The identifier of the error message"
+              },
+              "message" : {
+                "type" : "string",
+                "description" : "The actual t24 error message caused by server"
+              }
+            }
+          }
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    },
+    "MandateParameter" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/MandateParameterBody"
+        }
+      },
+      "description" : "MandateParameter"
+    },
+    "MandateParameterBody" : {
+      "type" : "object",
+      "properties" : {
+        "fieldIds" : {
+          "type" : "array",
+          "description" : "This field groups the mandate parameter values",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "amount" : {
+                "type" : "string",
+                "description" : "This is the payment amount",
+                "minLength" : 0,
+                "maxLength" : 13
+              },
+              "currency" : {
+                "type" : "string",
+                "description" : "Identifies the currency. E.g. USD, GBP etc",
+                "minLength" : 0,
+                "maxLength" : 15
+              },
+              "valueDate" : {
+                "type" : "string",
+                "description" : "Indicates the value date on which the underlying accounting entry is to be given value (for interest purposes)",
+                "minLength" : 0,
+                "maxLength" : 9
+              }
+            }
+          }
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 11
+        },
+        "raiseAlert" : {
+          "type" : "string",
+          "description" : "Indicates if alerts should be raised to pending Signatories using Business events",
+          "minLength" : 0,
+          "maxLength" : 10
+        }
+      }
+    },
+    "MandateParameterResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/MandateParameterResponseBody"
+        }
+      },
+      "description" : "MandateParameterResponse"
+    },
+    "MandateParameterResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "fieldIds" : {
+          "type" : "array",
+          "description" : "This field groups the mandate parameter values",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "amount" : {
+                "type" : "string",
+                "description" : "This is the payment amount",
+                "minLength" : 0,
+                "maxLength" : 13
+              },
+              "currency" : {
+                "type" : "string",
+                "description" : "Identifies the currency. E.g. USD, GBP etc",
+                "minLength" : 0,
+                "maxLength" : 15
+              },
+              "valueDate" : {
+                "type" : "string",
+                "description" : "Indicates the value date on which the underlying accounting entry is to be given value (for interest purposes)",
+                "minLength" : 0,
+                "maxLength" : 9
+              }
+            }
+          }
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 11
+        },
+        "raiseAlert" : {
+          "type" : "string",
+          "description" : "Indicates if alerts should be raised to pending Signatories using Business events",
+          "minLength" : 0,
+          "maxLength" : 10
+        }
+      }
+    },
+    "SignatoryGroup" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/PayloadHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/SignatoryGroupBody"
+        }
+      },
+      "description" : "SignatoryGroup"
+    },
+    "SignatoryGroupBody" : {
+      "type" : "object",
+      "properties" : {
+        "signatories" : {
+          "type" : "array",
+          "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "customerId" : {
+                "type" : "string",
+                "description" : "Identifier of the customer",
+                "minLength" : 0,
+                "maxLength" : 10
+              },
+              "startDate" : {
+                "type" : "string",
+                "format" : "date",
+                "description" : "Contains the date on which the transaction or payment gets initiated."
+              },
+              "endDate" : {
+                "type" : "string",
+                "format" : "date",
+                "description" : "Indicates the date till which the transaction history requested. If 20120101 is the start date and 20120201 is the end date, all transactions that are booked between January 1 to February 1 2012 are returned"
+              }
+            }
+          }
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 11
+        }
+      }
+    },
+    "SignatoryGroupResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ScreenHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/SignatoryGroupResponseBody"
+        }
+      },
+      "description" : "SignatoryGroupResponse"
+    },
+    "SignatoryGroupResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "signatories" : {
+          "type" : "array",
+          "description" : "The authorised signatories for the payments can be specified here. More applicable in case of corporate payments where multiple signatories are required to sign a payment instruction",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "customerId" : {
+                "type" : "string",
+                "description" : "Identifier of the customer",
+                "minLength" : 0,
+                "maxLength" : 10
+              },
+              "startDate" : {
+                "type" : "string",
+                "format" : "date",
+                "description" : "Contains the date on which the transaction or payment gets initiated."
+              },
+              "endDate" : {
+                "type" : "string",
+                "format" : "date",
+                "description" : "Indicates the date till which the transaction history requested. If 20120101 is the start date and 20120201 is the end date, all transactions that are booked between January 1 to February 1 2012 are returned"
+              }
+            }
+          }
+        },
+        "displayName" : {
+          "type" : "string",
+          "description" : "Contains the name used for display or enrichment purposes",
+          "minLength" : 0,
+          "maxLength" : 11
+        }
+      }
+    },
+    "QueryHeader" : {
+      "properties" : {
+        "audit" : {
+          "type" : "object",
+          "properties" : {
+            "T24_time" : {
+              "type" : "integer",
+              "format" : "int32",
+              "description" : "Time taken to response by T24"
+            },
+            "versionNumber" : {
+              "type" : "string",
+              "description" : "The CURR.NO. of the record"
+            },
+            "requestParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the request by IRIS"
+            },
+            "responseParse_time" : {
+              "type" : "number",
+              "description" : "Time taken to parse the response by IRIS"
+            }
+          }
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the API(success/failed)"
+        },
+        "page_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records per page"
+        },
+        "page_start" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The record from which the response should be displayed"
+        },
+        "total_size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The total number of records present"
+        },
+        "page_token" : {
+          "type" : "string",
+          "description" : "Unique id expected to get as part of response from t24 on every enquiry request"
+        }
+      }
+    },
+    "SignatoryMandateProcessingResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/QueryHeader"
+        },
+        "body" : {
+          "$ref" : "#/definitions/SignatoryMandateProcessingResponseBody"
+        }
+      },
+      "description" : "SignatoryMandateProcessingResponse"
+    },
+    "SignatoryMandateProcessingResponseBody" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "mandateSimulationResponse" : {
+            "type" : "string",
+            "description" : "Indicates the simulated mandates check response. TRUE - Successful mandate processing; FALSE - Unsucessful mandate processing",
+            "maxLength" : 100
+          }
+        }
+      }
+    },
+    "QueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/QueryErrorResponseBody"
+        }
+      },
+      "description" : "QueryErrorResponse"
+    },
+    "QueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual t24 error message "
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: "
+        }
+      }
+    },
+    "BusinessQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/BusinessQueryErrorResponseBody"
+        }
+      },
+      "description" : "BusinessQueryErrorResponse"
+    },
+    "BusinessQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual t24 error message for bad requests"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: Business"
+        }
+      }
+    },
+    "SystemQueryErrorResponse" : {
+      "properties" : {
+        "header" : {
+          "$ref" : "#/definitions/ErrorHeader"
+        },
+        "error" : {
+          "$ref" : "#/definitions/SystemQueryErrorResponseBody"
+        }
+      },
+      "description" : "SystemQueryErrorResponse"
+    },
+    "SystemQueryErrorResponseBody" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "The identifier of the error message"
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "The actual t24 error message caused by server"
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "The identifier of error type: System"
+        }
+      }
+    }
+  }
+}
