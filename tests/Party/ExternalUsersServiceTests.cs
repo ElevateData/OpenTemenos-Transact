@@ -7,13 +7,14 @@ namespace OpenTemenos.Tests.Transact.Party;
 public class ExternalUserServiceTests : CredentialManagement
 {
     private const string ExternalUserPreferencesId = "1";
+    private const string ChannelId = "2";
     private readonly IPartyClient _client = new PartyClient(HttpClient) { ReadResponseAsString = true };
 
     [TestMethod]
-    [TestCategory("GET all method")]
+    [TestCategory("GET detail method")]
     public void GetExternalUserProfileAsync()
     {
-        var result = _client.ExternalUserService.GetExternalUserProfileAsync()
+        var result = _client.ExternalUserService.GetExternalUserProfileAsync(ChannelId)
             .Result;
         Assert.IsNotNull(result.Body);
         Debug.WriteLine($@"{MethodBase.GetCurrentMethod()?.Name}: {JsonSerializer.Serialize(result.Body)}");
